@@ -29,6 +29,11 @@ class State
      */
     private $orders;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();

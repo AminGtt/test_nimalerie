@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des produits/commande{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Produit par commande</h2>
+
+        <div>
+            <a href="{{ path('product_order_new') }}">
+                <button class="button blue_btn new">
+                    Nouveau Produit/commande
+                </button>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="productOrder">
+            <thead>
+            <tr>
+                <th>Nom du produit</th>
+                <th>Commande N°</th>
+                <th>Quantité</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product_order in product_orders %}
+                <tr>
+                    <td>{{ product_order.product.title }}</td>
+                    <td>{{ product_order.order.id }}</td>
+                    <td>{{ product_order.quantity }}</td>
+                    <td>
+                        <button class="blue_btn button">
+                            <a href="{{ path('product_order_show', {'id': product_order.id}) }}">Détails</a>
+                        </button>
+                        <button class="edit_btn button">
+                            <a href="{{ path('product_order_edit', {'id': product_order.id}) }}">Editer</a>
+                        </button>
+                        <button id="invisible">
+                            {{ include('admin/product_order/_delete_form.html.twig') }}
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun article/commande trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des états{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Etat</h2>
+
+        <div>
+            <a href="{{ path('state_new') }}">
+                <button class="button blue_btn new">
+                    Nouvel état
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="state">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for state in states %}
+                <tr>
+                    <td>{{ state.id }}</td>
+                    <td>{{ state.name }}</td>
+                    <td>
+                        <button class="blue_btn button">
+                            <a href="{{ path('state_show', {'id': state.id}) }}">Détails</a>
+                        </button>
+                        <button class="edit_btn button">
+                            <a href="{{ path('state_edit', {'id': state.id}) }}">Editer</a>
+                        </button>
+                        <button id="invisible">
+                            {{ include('admin/state/_delete_form.html.twig') }}
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun état trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

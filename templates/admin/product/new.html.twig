@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Produit</h2>
+    </div>
+
+    <div class="text-center d-flex justify-content-center">
+        <div class="form px-4 py-5">
+            {{ include('admin/product/_form.html.twig') }}
+        </div>
+    </div>
+
+    <div class="pl-5 ml-5">
+        <button class="button blue_btn">
+            <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </button>
+    </div>
+{% endblock %}

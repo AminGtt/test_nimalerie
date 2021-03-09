@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Details clients{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Client</h2>
+
+        <div>
+            <button class="button blue_btn new">
+                <a href="{{ path('client_new') }}">Nouveau client</a>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="client">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>Adresse complète</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.roles ? client.roles|json_encode : '' }}</td>
+                <td>{{ client.name }}</td>
+                <td>{{ client.lastName }}</td>
+                <td>{{ client.birthDate ? client.birthDate|date('Y-m-d') : '' }}</td>
+                <td>{{ client.fullAdress }}</td>
+                <td>{{ client.gender ? 'Mme' : 'Mr' }}</td>
+                <td id="actions">
+                    <button class="edit_btn button">
+                        <a href="{{ path('client_edit', {'id': client.id}) }}">Editer</a>
+                    </button>
+                    <button id="invisible">
+                        {{ include('admin/client/_delete_form.html.twig') }}
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button class="button blue_btn">
+                        <a href="{{ path('client_index') }}">Retour à la liste</a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

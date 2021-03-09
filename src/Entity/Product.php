@@ -35,12 +35,7 @@ class Product
     private $excltaxPrice;
 
     /**
-     * @ORM\Column(type="string", length=15)
-     */
-    private $incltaxPrice;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
 
@@ -55,31 +50,44 @@ class Product
     private $photos;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, mappedBy="products")
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="products")
      */
-    private $categories;
-
+    private $categorie;
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="products")
+     * @ORM\OneToMany(targetEntity=ProductOrder::class, mappedBy="product", orphanRemoval=true)
+     */
+    private $productOrders;
+    /**
+     * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $marque;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Order::class, inversedBy="products")
-     */
-    private $orders;
+    private $brand;
 
     public function __construct()
     {
         $this->photos = new ArrayCollection();
-        $this->categories = new ArrayCollection();
-        $this->orders = new ArrayCollection();
+        $this->productOrders = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
     {
-        return $this->id;
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie): void
+    {
+        $this->categorie = $categorie;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     public function getTitle(): ?string
@@ -92,6 +100,41 @@ class Product
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|ProductOrder[]
+     */
+    public function getProductOrders(): Collection
+    {
+        return $this->productOrders;
+    }
+
+    public function addProductOrders(ProductOrder $productOrder): self
+    {
+        if (!$this->productOrders->contains($productOrder)) {
+            $this->productOrders[] = $productOrder;
+            $productOrder->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductOrders(ProductOrder $productOrder): self
+    {
+        if ($this->productOrders->removeElement($productOrder)) {
+            // set the owning side to null (unless already changed)
+            if ($productOrder->getProduct() === $this) {
+                $productOrder->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getDescription(): ?string
@@ -120,14 +163,7 @@ class Product
 
     public function getIncltaxPrice(): ?string
     {
-        return $this->incltaxPrice;
-    }
-
-    public function setIncltaxPrice(string $incltaxPrice): self
-    {
-        $this->incltaxPrice = $incltaxPrice;
-
-        return $this;
+        return $this->excltaxPrice * (120 / 100);
     }
 
     public function getQuantity(): ?int
@@ -184,65 +220,14 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Categorie[]
-     */
-    public function getCategories(): Collection
+    public function getBrand(): ?Brand
     {
-        return $this->categories;
+        return $this->brand;
     }
 
-    public function addCategory(Categorie $category): self
+    public function setBrand(?Brand $brand): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-            $category->addProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categorie $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function getMarque(): ?Marque
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(?Marque $marque): self
-    {
-        $this->marque = $marque;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Order[]
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        $this->orders->removeElement($order);
+        $this->brand = $brand;
 
         return $this;
     }

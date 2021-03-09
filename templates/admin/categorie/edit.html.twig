@@ -1,0 +1,27 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Editer une categorie{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Catégories</h2>
+
+        <div>
+            <button class="button blue_btn new">
+                <a href="{{ path('categorie_new') }}">Nouvelle catégorie</a>
+            </button>
+        </div>
+    </div>
+
+    <div class="text-center d-flex justify-content-center">
+        <div class="form px-4 py-5">
+            {{ include('admin/categorie/_form.html.twig') }}
+        </div>
+    </div>
+
+    <div class="pl-5 ml-5">
+        <button class="button blue_btn">
+            <a href="{{ path('categorie_index') }}">Retour à la liste</a>
+        </button>
+    </div>
+{% endblock %}

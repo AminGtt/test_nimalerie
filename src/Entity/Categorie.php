@@ -25,24 +25,66 @@ class Categorie
     private $name;
 
     /**
-     * @ORM\Column(type="boolean")
+     * One Category has Many Categories.
+     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="parent", orphanRemoval=true)
      */
-    private $isChild;
+    private $childrens;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * Many Categories have One Category.
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="childrens")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $parentName;
+    private $parent;
+
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="categories")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="categorie", orphanRemoval=true)
      */
     private $products;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
+        $this->childrens = new ArrayCollection();
         $this->products = new ArrayCollection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent($parent): void
+    {
+        $this->parent = $parent;
+    }
+
+
+    public function addChildren(Categorie $categorie){
+        if(!$this->childrens->contains($categorie)) {
+            $this->childrens->add($categorie);
+        }
+    }
+
+    public function removeChildren(Categorie $categorie){
+        if($this->childrens->containsKey($categorie)){
+            $this->childrens->removeElement($categorie);
+        }
+    }
+
+
+
 
     public function getId(): ?int
     {

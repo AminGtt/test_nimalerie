@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}Back-office La Nîmes'alerie!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+       and uncomment the following Encore helpers to start using Symfony UX #}
+
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+</head>
+
+<body>
+    <menu></menu>
+    <section>
+
+        <header class="d-flex justify-content-between align-items-center pl-5 pr-5">
+
+            <div class="d-flex align-items-center">
+                <h2>La Nîmes'alerie</h2>
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+                <nav>
+                    <ul class="d-flex">
+                        <li id="selected"><a href="{{ path('admin_main_home') }}">Accueil</a></li>
+                        <li><a href="{{ path('categorie_index') }}">Catégories</a></li>
+                        <li><a href="{{ path('client_index') }}">Clients</a></li>
+                        <li><a href="{{ path('order_index') }}">Commandes</a></li>
+                        <li><a href="{{ path('brand_index') }}">Marques</a></li>
+                        <li><a href="{{ path('product_index') }}">Produits</a></li>
+                        <li><a href="{{ path('product_order_index') }}">Produit/commande</a></li>
+                        <li><a href="{{ path('photo_index') }}">Photos</a></li>
+                        <li><a href="{{ path('state_index') }}">Etat</a></li>
+                    </ul>
+                </nav>
+                {% endif %}
+
+            </div>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <aside class="d-flex">
+
+                        <a href="">
+                            <img src="{{ asset('images/back/gear.png') }}" alt="logo_parametres">
+                        </a>
+
+                        <p class="mr-5 ml-5">Bonjour, M. Capard</p>
+
+                        <div>
+                            <button class="blue_btn button">
+                                <a href="{{ path('app_logout_admin') }}">
+                                    Déconnexion
+                                </a>
+                            </button>
+                        </div>
+
+                    </aside>
+                {% endif %}
+
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+
+            <footer class="d-flex align-items-center">
+
+                <div>
+                    <p class="col-12 offset-4">
+                        2021 © La Nîmes'alerie
+                    </p>
+                </div>
+
+            </footer>
+
+    </section>
+
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+</body>
+</html>

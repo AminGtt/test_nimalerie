@@ -1,0 +1,54 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Commande</h2>
+
+        <div>
+            <a href="{{ path('order_new') }}">
+                <button class="button blue_btn new">
+                    Nouvelle commande
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="order">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>TotalPrice</th>
+                <th>Client</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ totals[order.id] }}€</td>
+                    <td>{{ order.client }}</td>
+                    <td>
+                        <button class="blue_btn button">
+                            <a href="{{ path('order_show', {'id': order.id}) }}">Détails</a>
+                        </button>
+                        <button class="edit_btn button">
+                            <a href="{{ path('order_edit', {'id': order.id}) }}">Editer</a>
+                        </button>
+                        <button id="invisible">
+                            {{ include('admin/order/_delete_form.html.twig') }}
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune commande trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

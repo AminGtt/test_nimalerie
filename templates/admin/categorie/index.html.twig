@@ -1,0 +1,60 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Catégories</h2>
+
+        <div>
+            <a href="{{ path('categorie_new') }}">
+                <button class="button blue_btn new">
+                    Nouvelle catégorie
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="categorie">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>EstEnfante</th>
+                    <th>Nom parent</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.name }}</td>
+                    <td>
+                        {{ categorie.parent is null ? 'Non' : 'Oui' }}
+                    </td>
+                    <td>
+                        {{ categorie.parent is null ? '' : categorie.parent.name }}
+                    </td>
+                    <td>
+                        <button class="blue_btn button">
+                            <a href="{{ path('categorie_show', {'id': categorie.id}) }}">Détails</a>
+                        </button>
+                        <button class="edit_btn button">
+                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Editer</a>
+                        </button>
+                        <button id="invisible">
+                            {{ include('admin/categorie/_delete_form.html.twig') }}
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucune catégorie trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

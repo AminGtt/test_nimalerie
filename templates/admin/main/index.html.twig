@@ -1,0 +1,97 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+            <h2>Administration</h2>
+
+            <section>
+
+                <div class="fourGroup d-flex col-6 flex-wrap">
+
+                    <div class="zoomIn">
+                        <a href="{{ path('categorie_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:folder-outline" style="color: #6c7293; font-size: 100px;"></span>
+
+                            <h3>
+                                Catégories
+                            </h3>
+                        </a>
+                    </div>
+
+                    <div class="zoomIn">
+                        <a href="{{ path('client_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:account-circle" style="color: #6c7293; font-size: 100px;"></span>
+
+
+                            <h3>
+                                Clients
+                            </h3>
+                        </a>
+                    </div>
+
+                    <div class="zoomIn">
+                        <a href="{{ path('order_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:barcode" style="color: #6c7293; font-size: 100px;"></span>
+
+
+                            <h3>
+                                Commandes
+                            </h3>
+                        </a>
+                    </div>
+
+                    <div class="zoomIn">
+                        <a href="{{ path('brand_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="file-icons:wolfram" style="color: #6c7293; font-size: 100px;"></span>
+
+                            <h3>
+                                Marques
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="fourGroup d-flex col-6 flex-wrap lastGroup">
+
+                    <div class="zoomIn">
+                        <a href="{{ path('product_order_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:cart-variant" style="color: #6c7293; font-size: 50px;"></span>
+
+                            <h3>
+                                Produits/Commande
+                            </h3>
+                        </a>
+                    </div>
+
+                    <div class="zoomIn">
+                        <a href="{{ path('product_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:shopping-search" style="color: #6c7293; font-size: 50px;"></span>
+
+                            <h3>
+                                Produits
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="zoomIn">
+                        <a href="{{ path('photo_index') }}">
+                            <span class="iconify" data-inline="false" data-icon="mdi:camera" style="color: #6c7293; font-size: 50px;"></span>
+
+                            <h3>
+                                Photos
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="zoomIn">
+                        <a href="{{ path('state_index') }}">
+                            <img src="{{ asset('images/back/logo_status.png') }}">
+
+                            <h3>
+                                Etat
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+
+{% endblock %}

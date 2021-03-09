@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use App\Service\PriceService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,7 +22,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $totalPrice;
 
@@ -32,9 +33,40 @@ class Order
     private $state;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="orders")
+     * @ORM\OneToMany(targetEntity=ProductOrder::class, mappedBy="order", orphanRemoval=true)
      */
-    private $products;
+    private $productOrders;
+
+    /**
+     * @return Collection|ProductOrder[]
+     */
+    public function getProductOrders() : Collection
+    {
+        return $this->productOrder;
+    }
+
+    public function addProductOrders(ProductOrder $productOrder): self
+    {
+        if (!$this->productOrders->contains($productOrder)) {
+            $this->productOrders[] = $productOrder;
+            $productOrder->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductOrders(ProductOrder $productOrder): self
+    {
+        if ($this->productOrders->removeElement($productOrder)) {
+            // set the owning side to null (unless already changed)
+            if ($productOrder->getProduct() === $this) {
+                $productOrder->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="orders")
@@ -42,12 +74,17 @@ class Order
      */
     private $client;
 
-
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return  'Commande n° ' . $this->getId();
+    }
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->productOrders = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -59,7 +96,7 @@ class Order
         return $this->totalPrice;
     }
 
-    public function setTotalPrice(float $totalPrice): self
+    public function setTotalPrice(float $totalPrice, PriceService $ps): self
     {
         $this->totalPrice = $totalPrice;
 
@@ -78,32 +115,6 @@ class Order
         return $this;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(Product $product): self
-    {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->addOrder($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): self
-    {
-        if ($this->products->removeElement($product)) {
-            $product->removeOrder($this);
-        }
-
-        return $this;
-    }
 
     public function getClient(): ?Client
     {
