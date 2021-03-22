@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer mon compte{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h2>Editer son compte</h2>
+
+            <div class="login-wrapper">
+
+                <div class="text-center col-6">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                    <button class="button green_btn my-5">
+                        {{ button_label|default('Enregistrer') }}
+                    </button>
+
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

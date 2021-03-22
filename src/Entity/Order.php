@@ -7,6 +7,7 @@ use App\Service\PriceService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
@@ -29,6 +30,7 @@ class Order
     /**
      * @ORM\ManyToOne(targetEntity=State::class, inversedBy="orders")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Une commande doit avoir un état.")
      */
     private $state;
 
@@ -36,11 +38,23 @@ class Order
      * @ORM\OneToMany(targetEntity=ProductOrder::class, mappedBy="order", orphanRemoval=true)
      */
     private $productOrders;
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Veuillez choisir un client.")
+     * @Assert\Choice(message="Une commande doit appartenir à un client.")
+     */
+    private $client;
+
+    public function __construct()
+    {
+        $this->productOrders = new ArrayCollection();
+    }
 
     /**
      * @return Collection|ProductOrder[]
      */
-    public function getProductOrders() : Collection
+    public function getProductOrders(): Collection
     {
         return $this->productOrder;
     }
@@ -67,24 +81,11 @@ class Order
         return $this;
     }
 
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="orders")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $client;
-
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return  'Commande n° ' . $this->getId();
+        return 'Commande n° ' . $this->getId();
     }
-
-    public function __construct()
-    {
-        $this->productOrders = new ArrayCollection();
-    }
-
 
     public function getId(): ?int
     {

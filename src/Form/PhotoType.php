@@ -17,12 +17,14 @@ class PhotoType extends AbstractType
         $builder
             ->add('link', UrlType::class, [
                 'label' => 'Lien',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control form-control-lg',
+                    'placeholder' => 'www.google.fr']
             ])
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'label' => 'Produit',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'placeholder' => 'Choisissez un produit'
             ])
         ;
     }

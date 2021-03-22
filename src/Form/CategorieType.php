@@ -18,12 +18,16 @@ class CategorieType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control form-control-lg',
+                    'placeholder' => 'Colliers & harnais']
             ])
             ->add('parent', EntityType::class, [
                 'class' => Categorie::class,
                 'label' => 'Nom parent',
-                'attr' => ['class' => 'form-control']
+                'attr' => [
+                    'class' => 'form-control form-control-lg'
+                ],
+                'placeholder' => 'Choisissez une catégorie parente'
             ]);
     }
 

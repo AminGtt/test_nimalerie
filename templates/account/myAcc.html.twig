@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h2>Mes Informations</h2>
+
+            <div class="myacc-wrapper">
+
+                <div class="col-6">
+                    <table class="table table-hover table-striped">
+                        <tbody>
+
+                            <tr>
+                                <th>
+                                    Genre
+                                </th>
+                                <td>
+                                    {% if client.gender == 0 %}
+                                        Mr
+                                    {% else %}
+                                        Mme
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Prénom
+                                </th>
+                                <td>
+                                    {{ client.name }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Nom
+                                </th>
+                                <td>
+                                    {{ client.lastname }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Email
+                                </th>
+                                <td>
+                                    {{ client.email }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Adresse
+                                </th>
+                                <td>
+                                    {{ client.fullAdress }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Date de naissance
+                                </th>
+                                <td>
+                                    {{ client.birthdate|date("d M Y") }}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="m-3">
+                    <a href="{{ path('account_edit') }}">
+                        <button class="button green_btn">
+                            Editer
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="services">
+            {{ include('ourServices/ourServices.html.twig') }}
+        </div>
+    </main>
+{% endblock %}

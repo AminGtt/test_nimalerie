@@ -71,7 +71,7 @@ class FrontOfficeAuthenticator extends AbstractFormLoginAuthenticator implements
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('L\'adresse email est incorrecte.');
+            throw new CustomUserMessageAuthenticationException('Le pseudo/mot de passe est incorrect.');
         }
 
         return $user;
@@ -79,7 +79,14 @@ class FrontOfficeAuthenticator extends AbstractFormLoginAuthenticator implements
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+
+        $pass = $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+
+        if (!$pass) {
+            throw new CustomUserMessageAuthenticationException('Le pseudo/mot de passe est incorrect.');
+        }
+
+        return $pass;
     }
 
     /**

@@ -21,6 +21,7 @@ class ClientFixtures extends Fixture
         $client1 = new Client();
         $client2 = new Client();
         $client3 = new Client();
+        $client4 = new Client();
 
         $client1->setGender(0);
         $client1->setName('Jon');
@@ -53,6 +54,17 @@ class ClientFixtures extends Fixture
         $client3->setFullAdress("Le black pearl");
         $client3->setRoles(['ROLE_ADMIN']);
         $manager->persist($client3);
+        $manager->flush();
+
+        $client4->setGender(1);
+        $client4->setName('test');
+        $client4->setLastName('test');
+        $client4->setEmail('test@test.test');
+        $client4->setPassword($this->pe->encodePassword($client4, 'test'));
+        $client4->setBirthDate(\DateTime::createFromFormat('d-m-Y', '10-24-1999'));
+        $client4->setFullAdress("test");
+        $client4->setRoles(['ROLE_USER']);
+        $manager->persist($client4);
         $manager->flush();
     }
 }

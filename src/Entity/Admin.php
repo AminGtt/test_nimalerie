@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
+ * @UniqueEntity("username", message="Un admin avec le même pseudo existe déjà.")
  */
 class Admin implements UserInterface
 {
@@ -20,6 +23,7 @@ class Admin implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Un admin doit avoir un pseudo.")
      */
     private $username;
 
@@ -31,6 +35,7 @@ class Admin implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Un admin doit avoir un mot de passe")
      */
     private $password;
 

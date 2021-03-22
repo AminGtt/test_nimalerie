@@ -7,15 +7,17 @@
         <h2>Administration / Client</h2>
     </div>
 
-    <div class="text-center d-flex justify-content-center">
-        <div class="form px-4 py-5">
-            {{ include('admin/client/_form.html.twig') }}
+    <div class="ml-5 col-8 d-flex flex-row-reverse justify-content-around align-items-center">
+        <div class="text-center ml-5">
+            <div class="form px-4 pt-3">
+                {{ include('admin/client/_form.html.twig') }}
+            </div>
         </div>
-    </div>
 
-    <div class="pl-5 ml-5">
-        <button class="button blue_btn">
-            <a href="{{ path('client_index') }}">Retour à la liste</a>
-        </button>
+        <div>
+            <button class="button blue_btn">
+                <a href="{{ path('client_index') }}">Retour à la liste</a>
+            </button>
+        </div>
     </div>
 {% endblock %}

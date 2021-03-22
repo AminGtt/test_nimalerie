@@ -14,9 +14,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 
     {% block javascripts %}
         {#{{ encore_entry_script_tags('app') }}#}
@@ -35,18 +36,19 @@
                 <h2>La Nîmes'alerie</h2>
 
                 {% if is_granted('ROLE_ADMIN') %}
+                {% set route = app.request.get('_route') %}
 
                 <nav>
                     <ul class="d-flex">
-                        <li id="selected"><a href="{{ path('admin_main_home') }}">Accueil</a></li>
-                        <li><a href="{{ path('categorie_index') }}">Catégories</a></li>
-                        <li><a href="{{ path('client_index') }}">Clients</a></li>
-                        <li><a href="{{ path('order_index') }}">Commandes</a></li>
-                        <li><a href="{{ path('brand_index') }}">Marques</a></li>
-                        <li><a href="{{ path('product_index') }}">Produits</a></li>
-                        <li><a href="{{ path('product_order_index') }}">Produit/commande</a></li>
-                        <li><a href="{{ path('photo_index') }}">Photos</a></li>
-                        <li><a href="{{ path('state_index') }}">Etat</a></li>
+                        <li class="{% if route starts with 'admin_main' %}selected{% endif %}"><a href="{{ path('admin_main_home') }}">Accueil</a></li>
+                        <li class="{% if route starts with 'categorie' %}selected{% endif %}"><a href="{{ path('categorie_index') }}">Catégories</a></li>
+                        <li class="{% if route starts with 'client' %}selected{% endif %}"><a href="{{ path('client_index') }}">Clients</a></li>
+                        <li class="{% if route starts with 'order' %}selected{% endif %}"><a href="{{ path('order_index') }}">Commandes</a></li>
+                        <li class="{% if route starts with 'brand' %}selected{% endif %}"><a href="{{ path('brand_index') }}">Marques</a></li>
+                        <li class="{% if app.request.requestUri starts with '/admin/product/' %}selected{% endif %}"><a href="{{ path('product_index') }}">Produits</a></li>
+                        <li class="{% if route starts with 'product_order' %}selected{% endif %}"><a href="{{ path('product_order_index') }}">Produit/commande</a></li>
+                        <li class="{% if route starts with 'photo' %}selected{% endif %}"><a href="{{ path('photo_index') }}">Photos</a></li>
+                        <li class="{% if route starts with 'state' %}selected{% endif %}"><a href="{{ path('state_index') }}">Etat</a></li>
                     </ul>
                 </nav>
                 {% endif %}
@@ -92,6 +94,11 @@
 
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.js') }}"></script>
+    <script src="{{ asset('js/backoffice.js') }}"></script>
 </body>
 </html>

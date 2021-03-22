@@ -15,7 +15,10 @@ class BrandType extends AbstractType
         $builder
             ->add('name', TextType::class, [
             'label' => 'Nom',
-             'attr' => ['class' => 'form-control']
+             'attr' => [
+                 'class' => 'form-control form-control-lg',
+                 'placeholder' => 'NASA'
+             ]
             ])
         ;
     }

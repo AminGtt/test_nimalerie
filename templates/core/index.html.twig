@@ -2,6 +2,110 @@
 
 {% block body %}
 
-    <h1 class="text-center">Içi se trouvera la plus belle de toutes les homepages !</h1>
+    <main>
+
+        <section class="heading">
+            <img src="{{ asset('images/front/chien1.jpg') }}" alt="background">
+
+            <div class="container">
+
+                <h1>
+                    La Nîmes'alerie
+                </h1>
+
+                <p class="col-10">
+                    Comme vous, nous sommes attentionnés et passionnés par les animaux. Nos spécialistes en animalerie
+                    vous conseillent et vous transmettent leur passion en sélectionnant pour votre animal des produits
+                    adaptés à ses besoins : chiens, chats, oiseaux, rongeurs, poissons ou encore reptiles...
+                    Notre en ligne vous accompagne au quotidien pour garantir le bien-être de vos animaux.
+                    Notre objectif : proposer à nos clients des produits de haute qualité aux meilleurs prix.
+                    Que vous ayez un chien, un chat, des oiseaux, un aquarium, un rongeur ou un terrarium, vous trouverez chez
+                    la Nîmes’alerie une grande variété d'accessoires et de nourriture pour animaux de haute qualité.
+                    <br>
+                    <br>
+                    De plus, la livraison est offerte à partir de 49 € d’achat dans toute la France métropolitaine. Nous travaillons
+                    jour après jour pour améliorer la qualité de nos services. C'est pourquoi il est désormais possible en
+                    France de se faire livrer dans un point de retrait de votre choix.
+                </p>
+            </div>
+
+        </section>
+
+{#        <div class="container">#}
+{#            <div class="text-center">#}
+{#                <img src="https://keyanzhang.com/WIP.jpg" alt="WIP">#}
+{#            </div>#}
+{#        </div>#}
+
+        <section class="partners mt-2 mb-5">
+            <h2 class="text-center my-5">Nos Partenaires</h2>
+
+            <div class=" container myCarousel d-flex">
+
+                <div>
+                    <img src="{{ asset('images/front/sheba.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/jk9.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/pedigree.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/purina-one.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/whiskas.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/royal-canin.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/friskies.svg') }}" alt="">
+                </div>
+
+                <div>
+                    <img src="{{ asset('images/front/proplan.svg') }}" alt="">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="homeMenu">
+            <h2 class="text-center">Toute l'animalerie</h2>
+
+            <div class="wrapper container d-flex my-5">
+                <div>
+                    <img src="{{ asset('images/front/chien2.jpg') }}" alt="">
+                </div>
+
+                <div class="d-flex">
+                    <ul class="flex-column py-5 align-items-baseline">
+                        <li><h2><a href="">Chiens</a></h2></li>
+                        <li><h2><a href="">Chats</a></h2></li>
+                        <li><h2><a href="">Oiseaux</a></h2></li>
+                        <li><h2><a href="">Poissons</a></h2></li>
+                        <li><h2><a href="">Rongeurs</a></h2></li>
+                        <li><h2><a href="">Reptiles & Co</a></h2></li>
+                        <li><h2><a href="">Animalerie 3.0</a></h2></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="services">
+            {{ include('ourServices/ourServices.html.twig') }}
+        </div>
+
+        <div class="maps">
+            {{ include('maps/maps.html.twig') }}
+        </div>
+    </main>
 
 {% endblock %}

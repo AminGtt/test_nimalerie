@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -21,16 +22,20 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Un produit doit avoir un titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Un produit doit avoir une description")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=15)
+     * @Assert\Positive(message="Le prix ne peux être nul ou négatif.")
+     * @Assert\NotBlank(message="Un produit doit avoir un prix")
      */
     private $excltaxPrice;
 
@@ -51,6 +56,8 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="products")
+     * @Assert\NotBlank(message="Un produit doit avoir un titre.")
+     * @Assert\Choice(message="Un produit doit appartenir à une catégorie.")
      */
     private $categorie;
     /**
@@ -60,6 +67,8 @@ class Product
     /**
      * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Un produit doit avoir une marque")
+     * @Assert\Choice(message="Un produit doit avoir une marque.")
      */
     private $brand;
 

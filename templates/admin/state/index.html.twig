@@ -36,9 +36,6 @@
                         <button class="edit_btn button">
                             <a href="{{ path('state_edit', {'id': state.id}) }}">Editer</a>
                         </button>
-                        <button id="invisible">
-                            {{ include('admin/state/_delete_form.html.twig') }}
-                        </button>
                     </td>
                 </tr>
             {% else %}

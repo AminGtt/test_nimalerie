@@ -40,9 +40,6 @@
                         <button class="edit_btn button">
                             <a href="{{ path('client_edit', {'id': client.id}) }}">Editer</a>
                         </button>
-                        <button id="invisible">
-                            {{ include('admin/client/_delete_form.html.twig') }}
-                        </button>
                     </td>
                 </tr>
             {% else %}

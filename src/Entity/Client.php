@@ -6,10 +6,13 @@ use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
+ * @UniqueEntity("email", message="Un client avec le même email existe déjà.")
  */
 class Client implements UserInterface
 {
@@ -22,6 +25,8 @@ class Client implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Un client doit avoir une adresse e-mail.")
+     * @Assert\Email(message="Veuillez rentrer une adresse e-mail valide.")
      */
     private $email;
 
@@ -33,31 +38,37 @@ class Client implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Un client doit avoir un mot de passe.")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Un client doit avoir un prénom.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Un client doit avoir un nom.")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Un client doit avoir une date de naissance.")
      */
     private $birthDate;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Un client doit avoir une adresse.")
      */
     private $fullAdress;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotNull(message="Un client doit avoir un genre.")
      */
     private $gender;
 

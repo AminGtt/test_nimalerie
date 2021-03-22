@@ -19,11 +19,12 @@ class OrderType extends AbstractType
             ->add('state', EntityType::class, [
                 'class' => State::class,
                 'expanded' => true,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control form-control-lg'],
             ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'placeholder' => 'Choisissez une marque'
             ]);
     }
 

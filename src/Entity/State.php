@@ -6,9 +6,12 @@ use App\Repository\StateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StateRepository::class)
+ * @UniqueEntity("name", message="Un status avec le même nom existe déjà.")
  */
 class State
 {
@@ -21,6 +24,7 @@ class State
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="Le statut doit avoir un nom.")
      */
     private $name;
 

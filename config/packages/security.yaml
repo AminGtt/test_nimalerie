@@ -20,7 +20,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         admin:
-            pattern: ^/admin/
+            pattern: ^/admin
             anonymous: true
             provider: admin
             guard:
@@ -57,6 +57,8 @@ security:
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/myAccount, roles: ROLE_USER }
 #        - { path: ^/dashboard, roles: [ROLE_DASHBOARD, ROLE_ADMIN ]}
     role_hierarchy:
         ROLE_DASHBOARD: ROLE_USER

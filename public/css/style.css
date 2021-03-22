@@ -3,230 +3,63 @@
   margin: 0;
 }
 
-section {
-  margin-left: 48px;
-}
-
-menu {
-  position: fixed;
-  width: 48px;
-  height: 100vh;
-  background-color: #1E1E2D;
-  margin: 0;
-  overflow: hidden;
+body {
+  font-family: "Lato", sans-serif;
 }
 
 header {
-  background-color: rgba(250, 249, 250, 0.4);
-  height: 100px;
+  border-bottom: 1px rgba(117, 117, 117, 0.1) solid;
+  margin-bottom: 25px;
 }
 
-header h2 {
-  font-family: "Poppins", sans-serif;
-  color: #646C9A;
-  font-size: 21px;
-  font-weight: normal;
-}
-
-nav {
-  font-family: "Poppins", sans-serif;
-  font-size: 13px;
-  color: #646C9A;
-  margin-top: 7px;
-  margin-left: 20px;
-}
-
-nav ul li {
-  padding: 10px 20px;
-}
-
-aside {
+header div, nav, ul {
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  margin-right: 25px;
 }
 
-aside p {
-  color: #B8B8B8;
+header a {
   margin: 0 10px;
 }
 
-aside img {
-  height: 25px;
-  width: 25px;
-}
-
-body {
-  background-image: url("https://i.pinimg.com/originals/e2/71/fd/e271fda72f1e158b5f0569cc72d36d7f.jpg");
-}
-
-main h2 {
+h2, h1 {
+  font-family: "Vollkorn SC", serif;
+  font-size: 36px;
   color: #07775A;
-  padding-top: 40px;
-  padding-bottom: 50px;
-  padding-left: 82px;
-  margin: 0;
-  font-family: "Lato", sans-serif;
-  font-size: 24px;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-
-main section {
-  display: flex;
-}
-
-main section div div {
-  border-radius: 10px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-  justify-content: center;
-  align-items: center;
-  background-color: #f1dbcf;
-}
-
-main section div div a {
-  text-align: center;
-}
-
-main section div.fourGroup div {
-  width: 47.5%;
-  height: 240px;
-}
-
-div.lastGroup {
-  margin-left: -30px;
-}
-
-main section div div h3 {
-  color: #6C7293;
-}
-
-main section div form {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-  padding: 30px 20px;
-}
-
-main section div form div {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-main table {
-  background-color: white;
-  margin-bottom: 120px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-  text-align: center;
-}
-main table tbody td#actions {
-  width: 3%;
-}
-
-main table#categorie {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#categorie td {
-  width: 1%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#client {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#client td {
-  width: 1%;
-  max-width: 100px;
-  padding-bottom: 20px;
-  height: 50px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-main table#order {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#order td {
-  width: 20%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#brand {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#brand td {
-  width: 33%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#product {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#product td {
-  width: 1%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#photo {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#photo td {
-  width: 20%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#state {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#state td {
-  width: 20%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main table#productOrder {
-  width: 1270px;
-  max-height: 777px;
-}
-main table#productOrder td {
-  width: 20%;
-  padding-bottom: 20px;
-  height: 50px;
-}
-
-main div div button.new {
-  margin-right: 82px;
 }
 
 footer {
-  background-color: #181824;
-  color: #A9A9AA;
-  height: 80px;
-  bottom: 0;
-  position: fixed;
-  width: 100vw;
+  text-align: center;
+  margin-top: 30px;
+}
+
+footer section img {
+  height: 50px;
+  width: 50px;
+  margin: 0 15px;
+}
+
+.container {
+  max-width: 1350px;
+}
+
+#logo {
+  width: 130px;
+  height: 120px;
+  margin: 30px 0;
+}
+
+#logoMyAcc {
+  height: 30px;
+  width: 30px;
 }
 
 .button {
   height: auto;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   padding: 10px 15px;
 }
@@ -236,38 +69,177 @@ footer {
   color: #5D78FF;
 }
 
-.edit_btn {
-  background-color: rgba(104, 193, 172, 0.85);
+.green_btn {
+  background-color: #07775A;
   color: white;
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-.delete_btn {
-  background-color: rgba(194, 66, 66, 0.85);
-  color: white;
-}
-
-#selected {
-  color: #23B9FF;
-}
-
-.table-wrapper {
+.login-wrapper {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 18px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  padding-bottom: 70px;
+}
+.login-wrapper h3 {
+  font-weight: bold;
 }
 
-#invisible {
-  display: none;
+.login-wrapper form div {
+  margin: 30px 0;
 }
 
-.form {
-  width: 350px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+.login-wrapper form div label {
+  margin: 10px 0;
 }
 
-.zoomIn:hover {
-  transform: scale(1.1);
+.createAccount {
+  top: 45%;
+  position: relative;
+}
+
+.services {
+  background-color: #F5F5F5;
+  padding: 40px 0;
+}
+.services div {
+  display: flex;
+  justify-content: space-between;
+}
+.services section {
+  text-align: center;
+}
+.services section p {
+  font-weight: 600;
+}
+.services img {
+  height: 200px;
+  width: 200px;
+}
+
+.maps {
+  width: 100%;
+  position: relative;
+}
+.maps iframe {
+  opacity: 0.75;
+}
+.maps .contactForm {
+  background-color: rgba(7, 119, 90, 0.6);
+  position: absolute;
+  top: 5%;
+  right: 0;
+  padding: 30px 50px;
+  height: 90%;
+  width: 25%;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 4px 4px 14px 5px rgba(0, 0, 0, 0.25);
+}
+.maps .contactForm .iconified {
+  position: relative;
+}
+.maps .contactForm .iconified svg {
+  position: absolute;
+  top: 15px;
+  left: 5px;
+}
+.maps .contactForm input, .maps .contactForm textarea, .maps .contactForm button {
+  width: 100%;
+  margin: 10px 0;
+  border: 2px solid #07775A;
+}
+.maps .contactForm input, .maps .contactForm textarea {
+  padding-left: 30px;
+}
+.maps .contactForm input::placeholder, .maps .contactForm textarea::placeholder {
+  color: rgba(128, 128, 128, 0.5);
+}
+.maps .contactForm button {
+  color: #07775A;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.heading {
+  position: relative;
+  margin-top: 50px;
+  height: 520px;
+}
+.heading img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.heading div h1 {
+  padding: 40px 80px;
+}
+.heading div p {
+  font-size: 18px;
+}
+
+.partners {
+  overflow: hidden;
+}
+.partners div {
+  height: 150px;
+}
+.partners .myCarousel {
+  overflow: hidden;
+}
+.partners .myCarousel img {
+  height: 100%;
+  margin: 0 75px;
+}
+
+.homeMenu .wrapper {
+  justify-content: space-evenly;
+}
+.homeMenu img {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.myacc-wrapper {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.myacc-wrapper .table {
+  margin-bottom: 0;
+}
+
+#social {
+  position: relative;
+}
+
+#social::before, #social::after {
+  bottom: 25px;
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 40%;
+  background-color: #07775A;
+}
+
+#social::before {
+  left: 0;
+}
+
+#social::after {
+  right: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

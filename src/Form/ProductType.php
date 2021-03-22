@@ -43,12 +43,12 @@ class ProductType extends AbstractType
                 'multiple' => false,
                 'attr' => ['class' => 'form-control form-control-lg'],
                 'required' => true,
+                'placeholder' => 'Choisissez une catégorie'
             ])
             ->add('brand', EntityType::class, [
                 'class' => Brand::class,
                 'attr' => ['class' => 'form-control form-control-lg',],
                 'label' => 'Marque',
-                'required' => true,  // not needed since it is true by default,
                 'placeholder' => 'Choisissez une marque'
             ]);
     }

@@ -12,12 +12,6 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        Vous êtes connécté en tant que {{ app.user.username }}, <a href="{{ path('app_logout_admin') }}">Logout</a>
-                    </div>
-                {% endif %}
-
                 <div>
                     <label for="username">Identifiants</label>
                     <input type="text" value="{{ last_username }}" name="username" id="username" class="form-control form-control-lg" required autofocus placeholder="Identifiant">

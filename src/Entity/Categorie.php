@@ -6,9 +6,12 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
+ * @UniqueEntity("name", message="Une catégorie avec le même nom existe déjà.")
  */
 class Categorie
 {
@@ -21,6 +24,7 @@ class Categorie
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Une catégorie doit avoir un nom.")
      */
     private $name;
 

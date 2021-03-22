@@ -43,9 +43,12 @@
                         <button class="edit_btn button">
                             <a href="{{ path('product_edit', {'id': product.id}) }}">Editer</a>
                         </button>
-                        <button id="invisible">
-                            {{ include('admin/product/_delete_form.html.twig') }}
-                        </button>
+{#                        <button id="invisible">#}
+{#                            {{ include('admin/product/_delete_form.html.twig') }}#}
+{#                        </button>#}
+
+                        <!-- Modal -->
+                        {{ include('modal/trigger.html.twig') }}
                     </td>
                 </tr>
 
@@ -56,6 +59,8 @@
                         </button>
                     </td>
                 </tr>
+                <!-- Modal -->
+                {% include 'modal/modal.html.twig' with {'element': 'product'} %}
             </tbody>
         </table>
     </div>

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
@@ -19,12 +20,15 @@ class Photo
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Url(message="Veuillez entrer une URL valide svp")
+     * @Assert\NotBlank(message="Ce champ ne peux être vide")
      */
     private $link;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="photos")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Choice(message="Veuillez choisir un produit.")
      */
     private $product;
 
