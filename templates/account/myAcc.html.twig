@@ -67,7 +67,7 @@
                                     Date de naissance
                                 </th>
                                 <td>
-                                    {{ client.birthdate|date("d M Y") }}
+                                    {{ client.birthdate|format_datetime('long', 'none', locale="fr") }}
                                 </td>
                             </tr>
 

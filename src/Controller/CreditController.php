@@ -17,7 +17,7 @@ class CreditController extends AbstractController
     }
 
     /**
-     * @Route("/quiSommesNous", name="quiSommesNous")
+     * @Route("/qui-sommes-nous", name="quiSommesNous")
      */
     public function quiSommesNous(): Response
     {
@@ -25,7 +25,7 @@ class CreditController extends AbstractController
     }
 
     /**
-     * @Route("/mentionsLegales", name="mentionsLegales")
+     * @Route("/mentions-legales", name="mentionsLegales")
      */
     public function mentionsLegales(): Response
     {

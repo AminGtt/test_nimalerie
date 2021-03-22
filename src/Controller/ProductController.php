@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,17 @@ class ProductController extends AbstractController
     public function list(): Response
     {
         return $this->render('product/index.html.twig');
+    }
+
+    /**
+     * @Route("/{name}", name="listByCategorie")
+     */
+    public function listByCategorie($name, CategorieRepository $categorieRepository): Response
+    {
+        $categorie = $categorieRepository->findOneBy(['name' => $name]);
+        return $this->render('product/index.html.twig', [
+            'categorie' => $categorie,
+        ]);
     }
 
     /**

@@ -5,8 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
+use App\Service\CategoryService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,25 +34,43 @@ class CategorieController extends AbstractController
     /**
      * @Route("/new", name="categorie_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CategoryService $cs): Response
     {
+        $result = [];
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
+        $errors = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($categorie);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('categorie_index');
+            $result = $cs->addCategory($categorie);
+            if ($result['success'] == true) {
+                return $this->redirectToRoute('categorie_index');
+            } else {
+
+                foreach ( $result['erreur'] as $error) {
+                    dump("ici");
+                    dump($error);
+                    $form->addError(new FormError($error->getMessage()));
+                }
+
+                dump("oula");
+                return $this->render('admin/categorie/new.html.twig', [
+                    'categorie' => $categorie,
+                    'form' => $form->createView()
+                ]);
+            }
+
         }
 
+        $data = $form->getData();
         return $this->render('admin/categorie/new.html.twig', [
             'categorie' => $categorie,
             'form' => $form->createView(),
+            'errors' => $form->getErrors()
         ]);
     }
 
@@ -95,7 +115,7 @@ class CategorieController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($categorie);
             $entityManager->flush();

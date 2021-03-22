@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
+ * @UniqueEntity("slug", message="Une catégorie avec le même slug existe déjà.")
  * @UniqueEntity("name", message="Une catégorie avec le même nom existe déjà.")
  */
 class Categorie
@@ -27,6 +28,11 @@ class Categorie
      * @Assert\NotBlank(message="Une catégorie doit avoir un nom.")
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * One Category has Many Categories.
@@ -88,8 +94,6 @@ class Categorie
     }
 
 
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +107,18 @@ class Categorie
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $name): self
+    {
+        $this->slug = $name;
 
         return $this;
     }
@@ -153,5 +169,13 @@ class Categorie
         $this->products->removeElement($product);
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getChildrens(): Collection
+    {
+        return $this->childrens;
     }
 }

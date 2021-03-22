@@ -27,7 +27,8 @@ class CategorieType extends AbstractType
                 'attr' => [
                     'class' => 'form-control form-control-lg'
                 ],
-                'placeholder' => 'Choisissez une catégorie parente'
+                'placeholder' => 'Choisissez une catégorie parente',
+                'required' => false
             ]);
     }
 

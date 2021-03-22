@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="button edit_btn my-5">{{ button_label|default('Enregistrer') }}</button>
+<div class="alert-danger rounded">
+
+
+{{ form_errors((form)) }}
+</div>
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name) }}
+    {{ form_label(form.parent) }}
+    {{ form_widget(form.parent) }}
+<button class="button edit_btn my-5">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

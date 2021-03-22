@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/myAccount", name="account_")
+ * @Route("/myaccount", name="account_")
  * @IsGranted("ROLE_USER")
  */
 class AccountController extends AbstractController
