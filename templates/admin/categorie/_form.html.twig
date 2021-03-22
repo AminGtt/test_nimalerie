@@ -1,8 +1,12 @@
 {{ form_start(form) }}
 <div class="alert-danger rounded">
 
+{% dump errors %}
 
-{{ form_errors((form)) }}
+    {% for error in errors %}
+        {{ error.getMessage() }}
+    {% endfor %}
+{{ form_errors(form) }}
 </div>
     {{ form_label(form.name) }}
     {{ form_widget(form.name) }}

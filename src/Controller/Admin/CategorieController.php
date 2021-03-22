@@ -44,6 +44,8 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
         $errors = '';
 
+        dump($form->isSubmitted());
+        dump($form->isValid());
         if ($form->isSubmitted() && $form->isValid()) {
 
             $result = $cs->addCategory($categorie);
@@ -57,7 +59,7 @@ class CategorieController extends AbstractController
                     $form->addError(new FormError($error->getMessage()));
                 }
 
-                dump("oula");
+
                 return $this->render('admin/categorie/new.html.twig', [
                     'categorie' => $categorie,
                     'form' => $form->createView()
@@ -66,11 +68,10 @@ class CategorieController extends AbstractController
 
         }
 
-        $data = $form->getData();
         return $this->render('admin/categorie/new.html.twig', [
             'categorie' => $categorie,
             'form' => $form->createView(),
-            'errors' => $form->getErrors()
+            'errors' => $form->getErrors(true)
         ]);
     }
 
