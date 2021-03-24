@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactForm;
+use App\Form\ContactFormType;
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,8 +16,18 @@ class CoreController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(Request $request, CategorieRepository $categorieRepository): Response
     {
-        return $this->render('core/index.html.twig');
+        $contactForm = new ContactForm();
+        $form = $this->createForm(ContactFormType::class, $contactForm);
+
+        $this->addFlash('currentRoute', $request->attributes->get('_route'));
+
+        $form->handleRequest($request);
+
+        return $this->render('core/index.html.twig', [
+            "categories" => $categorieRepository->findAll(),
+            "form" => $form->createView(),
+        ]);
     }
 }

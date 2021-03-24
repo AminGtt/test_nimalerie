@@ -40,41 +40,62 @@
         <section class="partners mt-2 mb-5">
             <h2 class="text-center my-5">Nos Partenaires</h2>
 
-            <div class=" container myCarousel d-flex">
+            <div id="carouselExampleIndicators" class="container myCarousel carousel slide" data-interval=0>
 
-                <div>
-                    <img src="{{ asset('images/front/sheba.svg') }}" alt="">
+                <div class="carousel-inner d-flex">
+
+                    <div class="carousel-item active">
+                        <div class="d-flex">
+                            <div>
+                                <img src="{{ asset('images/front/sheba.svg') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/jk9.svg') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/pedigree.svg') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/purina-one.svg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="d-flex">
+                            <div>
+                                <img src="{{ asset('images/front/whiskas.png') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/royal-canin.svg') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/friskies.svg') }}" alt="">
+                            </div>
+
+                            <div>
+                                <img src="{{ asset('images/front/proplan.svg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div>
-                    <img src="{{ asset('images/front/jk9.svg') }}" alt="">
-                </div>
 
-                <div>
-                    <img src="{{ asset('images/front/pedigree.svg') }}" alt="">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/front/purina-one.svg') }}" alt="">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/front/whiskas.svg') }}" alt="">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/front/royal-canin.svg') }}" alt="">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/front/friskies.svg') }}" alt="">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/front/proplan.svg') }}" alt="">
-                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
 
             </div>
+
         </section>
 
         <section class="homeMenu">
@@ -85,15 +106,16 @@
                     <img src="{{ asset('images/front/chien2.jpg') }}" alt="">
                 </div>
 
-                <div class="d-flex">
-                    <ul class="flex-column py-5 align-items-baseline">
-                        <li><h2><a href="">Chiens</a></h2></li>
-                        <li><h2><a href="">Chats</a></h2></li>
-                        <li><h2><a href="">Oiseaux</a></h2></li>
-                        <li><h2><a href="">Poissons</a></h2></li>
-                        <li><h2><a href="">Rongeurs</a></h2></li>
-                        <li><h2><a href="">Reptiles & Co</a></h2></li>
-                        <li><h2><a href="">Animalerie 3.0</a></h2></li>
+                <div class="d-flex list">
+                    <ul class="flex-column align-items-baseline">
+                        <li>
+                            <h2><a href="{{ path('product_list') }}">Toute la boutique</a></h2>
+                        </li>
+                        {% for categorie in categories %}
+                            {% if categorie.parent == 'Animaux' %}
+                                <li><h2><a href="{{ path('product_listByCategorie', {'slug' : categorie.slug}) }}">{{ categorie.name }}</a></h2></li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

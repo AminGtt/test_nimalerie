@@ -223,14 +223,9 @@ footer section img{
     height: 150px;
   }
 
-  .myCarousel{
-
-    overflow: hidden;
-
-    img{
-      height: 100%;
-      margin: 0 75px;
-    }
+  img{
+    height: 100%;
+    margin: 0 75px;
   }
 }
 
@@ -239,11 +234,15 @@ footer section img{
 
   .wrapper{
     justify-content: space-evenly;
+
+    .list{
+      align-items: center;
+    }
   }
 
   img{
-    height: 400px;
-    width: 400px;
+    height: 450px;
+    width: 450px;
     object-fit: cover;
     border-radius: 50px;
   }
@@ -258,6 +257,13 @@ footer section img{
   margin-bottom: 50px;
 
   .table{margin-bottom: 0}
+}
+
+#contactForm{
+
+  label{
+    display: none;
+  }
 }
 
 

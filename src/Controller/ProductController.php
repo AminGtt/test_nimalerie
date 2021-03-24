@@ -21,12 +21,14 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{name}", name="listByCategorie")
+     * @Route("/{slug}", name="listByCategorie")
      */
-    public function listByCategorie($name, CategorieRepository $categorieRepository): Response
+    public function listByCategorie($slug, CategorieRepository $categorieRepository): Response
     {
-        $categorie = $categorieRepository->findOneBy(['name' => $name]);
-        return $this->render('product/index.html.twig', [
+        $categorie = $categorieRepository->findOneBy(['slug' => $slug]);
+
+
+        return $this->render('product/product-by-categorie.html.twig', [
             'categorie' => $categorie,
         ]);
     }
@@ -36,6 +38,6 @@ class ProductController extends AbstractController
      */
     public function details(): Response
     {
-        return $this->render('product/index.html.twig');
+        return $this->render('product/details.html.twig');
     }
 }

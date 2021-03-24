@@ -17,7 +17,6 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -31,87 +30,19 @@
 
 <body>
 
-<header>
-    <div class="container-fluid">
-        <a href="{{ path('home') }}">
-            <img id="logo" src="{{ asset('images/front/logo_deer_final.png') }}" alt="logo la Nimes'alerie.">
-        </a>
+{{ render(controller(
+    'App\\Controller\\PartsController::header'
+)) }}
 
-        <nav>
-            <ul>
-                <li><a href="{{ path('home') }}">Accueil</a></li>
-                <li><a href="{{ path('home') }}">Chiens</a></li>
-                <li><a href="{{ path('home') }}">Chats</a></li>
-                <li><a href="{{ path('home') }}">Oiseaux</a></li>
-                <li><a href="{{ path('home') }}">Rongeurs</a></li>
-                <li><a href="{{ path('home') }}">Poissons</a></li>
-                <li><a href="{{ path('home') }}">Reptiles & Co.</a></li>
-                <li><a href="{{ path('home') }}">Animalerie 3.0</a></li>
-            </ul>
-
-            {% if app.user == null %}
-                <div>
-                    <a href="{{ path('app_login') }}">
-                        <img class="mr-2" id="logoMyAcc" src="{{ asset('images/front/logo_monCompte.png') }}" alt="logo mon compte">
-                        Mon compte
-                    </a>
-                </div>
-
-            {% else %}
-
-                <div>
-                    <a href="{{ path('account_show') }}">
-                        <img class="mr-2" id="logoMyAcc" src="{{ asset('images/front/logo_monCompte.png') }}" alt="logo mon compte">
-                        Bonjour, {{ app.user.gender ? 'Mme' : 'Mr' }} {{ app.user }}
-                    </a>
-                </div>
-
-                <div>
-                    <a href="{{ path('app_logout') }}">
-                        <button class="button blue_btn">
-                            Déconnexion
-                        </button>
-                    </a>
-                </div>
-
-            {% endif %}
-
-            <div class="ml-2">
-                <img src="{{ asset('images/front/cart.png') }}" alt="logo panier">
-            </div>
-        </nav>
-    </div>
-
-</header>
+{#{{ include('header/header.html.twig') }}#}
 
 {% block body %}{% endblock %}
 
-<footer>
-    <section id="social">
-        <a href="https://facebook.com" target="_blank">
-            <img src="{{ asset('images/front/facebook.png') }}" alt="logo facebook">
-        </a>
-        <a href="https://instagram.com" target="_blank">
-            <img src="{{ asset('images/front/instagram.png') }}" alt="logo instagram">
-        </a>
-        <a href="https://linkedin.com" target="_blank">
-            <img src="{{ asset('images/front/linkedin.png') }}" alt="logo linkedin">
-        </a>
-    </section>
+{{ include('footer/footer.html.twig') }}
 
-    <menu>
-        <ul>
-            <li><a href="{{ path('cgv') }}">Conditions générales de ventes</a></li>
-            <li><a href="{{ path('quiSommesNous') }}">Qui sommes-nous?</a></li>
-            <li><a href="{{ path('mentionsLegales') }}">Mentions légales</a></li>
-            <li><a href="{{ path('privacy') }}">Protection des données</a></li>
-        </ul>
-    </menu>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
 
-    <div>
-        <p>© AG 2021</p>
-    </div>
-
-</footer>
 </body>
 </html>

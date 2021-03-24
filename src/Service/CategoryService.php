@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Categorie;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CategoryService
@@ -23,20 +24,16 @@ class CategoryService
 
     public function addCategory(Categorie $categorie)
     {
-        $retour = null;
+
         $categorie->setSlug($this->sluggerService->getSlug($categorie->getName()));
+
         $errors = $this->validator->validate($categorie);
-        if ($errors->count() > 0) {
-            $retour['success'] = false;
-            $retour['erreur'] = $errors;
-            dump($retour);
-            return $retour;
+
+        if ($errors->count() == 1) {
+            return new FormError('Une catégorie avec le même slug existe déjà.');
         } else {
-            $retour['success'] = true;
             $this->em->persist($categorie);
             $this->em->flush();
-            return $retour;
         }
     }
-
 }

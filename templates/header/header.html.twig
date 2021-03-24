@@ -1,0 +1,52 @@
+<header>
+    <div class="container-fluid">
+        <a href="{{ path('home') }}">
+            <img id="logo" src="{{ asset('images/front/logo_deer_final.png') }}" alt="logo la Nimes'alerie.">
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+
+                {% for categorie in categories %}
+                    {% if categorie.parent == 'Animaux' %}
+                        <li><a href="{{ path('product_listByCategorie', {'slug' : categorie.slug}) }}">{{ categorie.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+
+            {% if app.user == null %}
+                <div>
+                    <a href="{{ path('app_login') }}">
+                        <img class="mr-2" id="logoMyAcc" src="{{ asset('images/front/logo_monCompte.png') }}" alt="logo mon compte">
+                        Mon compte
+                    </a>
+                </div>
+
+            {% else %}
+
+                <div>
+                    <a href="{{ path('account_show') }}">
+                        <img class="mr-2" id="logoMyAcc" src="{{ asset('images/front/logo_monCompte.png') }}" alt="logo mon compte">
+                        Bonjour, {{ app.user.gender ? 'Mme' : 'Mr' }} {{ app.user }}
+                    </a>
+                </div>
+
+                <div>
+                    <a href="{{ path('app_logout') }}">
+                        <button class="button blue_btn">
+                            Déconnexion
+                        </button>
+                    </a>
+                </div>
+
+            {% endif %}
+
+            <div class="ml-2">
+                <img src="{{ asset('images/front/cart.png') }}" alt="logo panier">
+            </div>
+        </nav>
+    </div>
+
+</header>

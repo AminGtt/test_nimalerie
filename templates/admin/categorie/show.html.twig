@@ -21,6 +21,7 @@
                 <th>Nom</th>
                 <th>EstEnfante</th>
                 <th>Nom parent</th>
+                <th>Slug</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -32,8 +33,9 @@
                         {{ categorie.parent is null ? 'Non' : 'Oui' }}
                 </td>
                 <td>
-                    {{ categorie.parent.name is null ? 'Pas de catégorie' : categorie.parent.name }}
+                    {{ categorie.parent is null ? 'Pas de catégorie' : categorie.parent.name }}
                 </td>
+                <td>{{ categorie.slug }}</td>
                 <td>
                     <button class="edit_btn button">
                         <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Editer</a>

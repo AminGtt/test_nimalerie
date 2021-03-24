@@ -8,6 +8,7 @@ use App\Repository\CategorieRepository;
 use App\Service\CategoryService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,38 +37,26 @@ class CategorieController extends AbstractController
      */
     public function new(Request $request, CategoryService $cs): Response
     {
-        $result = [];
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
-        $errors = '';
 
-        dump($form->isSubmitted());
-        dump($form->isValid());
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $result = $cs->addCategory($categorie);
-            if ($result['success'] == true) {
-                return $this->redirectToRoute('categorie_index');
-            } else {
+            $cs->addCategory($categorie); // return null or FormError
 
-                foreach ( $result['erreur'] as $error) {
-                    dump("ici");
-                    dump($error);
-                    $form->addError(new FormError($error->getMessage()));
-                }
-
-
-                return $this->render('admin/categorie/new.html.twig', [
-                    'categorie' => $categorie,
-                    'form' => $form->createView()
-                ]);
+            if ($cs->addCategory($categorie) != null) {
+                $error = $cs->addCategory($categorie);
+                $form->addError($error);
             }
+
+            return $this->redirectToRoute('categorie_index');
 
         }
 
+        // Le cas par defaut (quand on arrive pour ajouter)
         return $this->render('admin/categorie/new.html.twig', [
             'categorie' => $categorie,
             'form' => $form->createView(),

@@ -1,0 +1,30 @@
+{{ form_start(form, {'action': path('contact_form_submit'), 'method': 'POST'}) }}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="iconified">
+        <span class="iconify" data-inline="false" data-icon="clarity:avatar-line" style="color: #41a78c; font-size: 20px;"></span>
+        {{ form_widget(form.name) }}
+    </div>
+
+    <div class="iconified">
+        <span class="iconify" data-inline="false" data-icon="clarity:mobile-solid" style="color: #41a78c; font-size: 20px;"></span>
+        {{ form_widget(form.phone) }}
+    </div>
+
+    <div class="iconified">
+        <span class="iconify" data-inline="false" data-icon="clarity:email-line" style="color: #41a78c; font-size: 20px;"></span>
+        {{ form_widget(form.mail) }}
+    </div>
+
+    <div class="iconified">
+        <span class="iconify" data-inline="false" data-icon="clarity:talk-bubbles-line" style="color: #41a78c; font-size: 20px;"></span>
+        {{ form_widget(form.message) }}
+    </div>
+
+    <button type="submit">Envoyer</button>
+{{ form_end(form) }}

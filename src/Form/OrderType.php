@@ -18,8 +18,12 @@ class OrderType extends AbstractType
         $builder
             ->add('state', EntityType::class, [
                 'class' => State::class,
-                'expanded' => true,
-                'attr' => ['class' => 'form-control form-control-lg'],
+                'expanded' => false,
+                'attr' => [
+                    'class' => 'form-control form-control-lg',
+                ],
+                'placeholder' => 'Veuillez sélectionnez un état',
+                'label' => 'Etat'
             ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,

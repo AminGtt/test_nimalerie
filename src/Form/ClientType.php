@@ -78,8 +78,9 @@ class ClientType extends AbstractType
             ])
 
             ->add('birthDate', BirthdayType::class, [
-//                'attr' => ['class' => 'form-control'],
-                'label' => 'Date de naissance'
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'label' => 'Date de naissance',
+                'widget' => 'single_text'
             ])
             ->add('fullAdress', TextType::class, [
                 'attr' => [

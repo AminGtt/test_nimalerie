@@ -82,7 +82,8 @@ class RegistrationFormType extends AbstractType
                 'placeholder' => 'Choisissez un genre'
             ])
             ->add('birthDate', BirthdayType::class, [
-
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'widget' => 'single_text'
             ])
             ->add('fullAdress', TextType::class, [
                 'attr' => [

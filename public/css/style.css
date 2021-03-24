@@ -191,10 +191,7 @@ footer section img {
 .partners div {
   height: 150px;
 }
-.partners .myCarousel {
-  overflow: hidden;
-}
-.partners .myCarousel img {
+.partners img {
   height: 100%;
   margin: 0 75px;
 }
@@ -202,9 +199,12 @@ footer section img {
 .homeMenu .wrapper {
   justify-content: space-evenly;
 }
+.homeMenu .wrapper .list {
+  align-items: center;
+}
 .homeMenu img {
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
   object-fit: cover;
   border-radius: 50px;
 }
@@ -219,6 +219,10 @@ footer section img {
 }
 .myacc-wrapper .table {
   margin-bottom: 0;
+}
+
+#contactForm label {
+  display: none;
 }
 
 #social {
