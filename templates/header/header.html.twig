@@ -5,7 +5,7 @@
         </a>
 
         <nav>
-            <ul>
+            <ul class="headerNav mr-4">
                 <li><a href="{{ path('home') }}">Accueil</a></li>
 
                 {% for categorie in categories %}
@@ -43,7 +43,7 @@
 
             {% endif %}
 
-            <div class="ml-2">
+            <div class="ml-4 gear">
                 <img src="{{ asset('images/front/cart.png') }}" alt="logo panier">
             </div>
         </nav>

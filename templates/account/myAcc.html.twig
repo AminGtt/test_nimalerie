@@ -10,6 +10,13 @@
             <div class="myacc-wrapper">
 
                 <div class="col-6">
+
+                    {% for flash in app.flashes('success') %}
+                        <div class="alert-info text-center">
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+
                     <table class="table table-hover table-striped">
                         <tbody>
 
@@ -77,8 +84,14 @@
 
                 <div class="m-3">
                     <a href="{{ path('account_edit') }}">
-                        <button class="button green_btn">
-                            Editer
+                        <button class="button green_btn my-2">
+                            Editer mes infos
+                        </button>
+                    </a>
+
+                    <a href="{{ path('account_change_pass') }}">
+                        <button class="button blue_btn my-2">
+                            Changer mon mot de passe
                         </button>
                     </a>
                 </div>

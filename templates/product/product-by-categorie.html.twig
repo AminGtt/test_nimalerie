@@ -1,3 +1,32 @@
 {% extends "base.html.twig" %}
 
-{% block title %} {{ categorie}} {% endblock %}
+{% block title %}Produits / {{ categorie}}{% endblock %}
+
+{% block body %}
+
+    <div class="container myBreadcrumb">
+        <h3>
+            Accueil / <a href="{{ path('product_list') }}">Boutique</a> / {{ categorie }}
+        </h3>
+    </div>
+
+    {# gerer le changement de bcg pour chaque catégorie #}
+    <img class="shop_bcg" src="{{ asset('images/front/space2.jpg') }}" alt="shop_background">
+
+    <div class="d-flex container-fluid">
+
+        <aside class="col-2">
+            {{ include('product/sidebar.html.twig') }}
+        </aside>
+
+        <main class="col-10">
+
+            <h1 class="text-center">Nos Produits</h1>
+
+            {{ include('product/products-panel.html.twig') }}
+
+        </main>
+
+    </div>
+
+{% endblock %}

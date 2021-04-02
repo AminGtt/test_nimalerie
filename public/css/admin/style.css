@@ -263,6 +263,11 @@ footer {
   display: none;
 }
 
+.no-bg {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .form {
   width: 350px;
   background-color: white;

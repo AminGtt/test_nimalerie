@@ -7,13 +7,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ClientType extends AbstractType
+class InfoAccountType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -41,34 +39,12 @@ class ClientType extends AbstractType
                 ],
                 'label' => 'Nom de famille'
             ])
-
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control form-control-lg',
                     'placeholder' => 'toto@gmail.com'
                 ]
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Votre mot de passe ne correspond pas.',
-                'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
-                'first_options'  => [
-                    'label' => 'Mot de passe',
-                    'attr' => [
-                        'class' => 'form-control form-control-lg',
-                        'placeholder' => 'Mot de passe'
-                    ]
-                ],
-                'second_options' => [
-                    'label' => 'Repeter le mot de passe',
-                    'attr' => [
-                        'class' => 'form-control form-control-lg',
-                        'placeholder' => 'Mot de passe'
-                    ]
-                ],
-            ])
-
             ->add('birthDate', BirthdayType::class, [
                 'attr' => ['class' => 'form-control form-control-lg'],
                 'label' => 'Date de naissance',
@@ -81,7 +57,6 @@ class ClientType extends AbstractType
                 ],
                 'label' => 'Adresse complète'
             ])
-
         ;
     }
 

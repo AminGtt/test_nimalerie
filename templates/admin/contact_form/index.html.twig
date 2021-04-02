@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des contacts{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Administration / Contacts</h2>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="table table-borderless" id="categorie">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom complet</th>
+                <th>Téléphone</th>
+                <th>Mail</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contact_forms %}
+                <tr>
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>
+                        {{ contact.phone }}
+                    </td>
+                    <td>
+                        {{ contact.mail }}
+                    </td>
+                    <td>
+                        <button class="blue_btn button">
+                            <a href="{{ path('admin_contact_form_show', {'id': contact.id}) }}">Détails</a>
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun contact trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

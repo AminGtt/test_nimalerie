@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer mon mot de passe{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h2>Changer mon mot de passe</h2>
+
+            <div class="login-wrapper">
+
+                <div class="text-center col-6">
+
+                    {% if error is defined %}
+                        <div class="alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+
+{#                    {{ dump(app.user.password) }}#}
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                    <button class="button green_btn my-5">
+                        {{ button_label|default('Enregistrer') }}
+                    </button>
+
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

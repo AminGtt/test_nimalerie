@@ -22,6 +22,29 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('gender', ChoiceType::class, [
+                'choices' => [
+                    'Mr' => 0,
+                    'Mme' => 1
+                ],
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'label' => 'Genre',
+                'placeholder' => 'Choisissez un genre'
+            ])
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control form-control-lg',
+                    'placeholder' => 'Prénom'
+                ],
+                'label' => 'Prénom',
+            ])
+            ->add('lastName', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control form-control-lg',
+                    'placeholder' => 'Nom'
+                ],
+                'label' => 'Nom',
+            ])
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control form-control-lg',
@@ -60,36 +83,17 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ]
             ])
-            ->add('name', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control form-control-lg',
-                    'placeholder' => 'Prénom'
-                ],
-            ])
-            ->add('lastName', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control form-control-lg',
-                    'placeholder' => 'Nom'
-                ],
-            ])
-            ->add('gender', ChoiceType::class, [
-                'choices' => [
-                    'Mr' => 0,
-                    'Mme' => 1
-                ],
-                'attr' => ['class' => 'form-control form-control-lg'],
-                'label' => 'Genre',
-                'placeholder' => 'Choisissez un genre'
-            ])
             ->add('birthDate', BirthdayType::class, [
                 'attr' => ['class' => 'form-control form-control-lg'],
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label' => 'Date de naissance',
             ])
             ->add('fullAdress', TextType::class, [
                 'attr' => [
                     'class' => 'form-control form-control-lg',
-                    'placeholder' => 'Adresse'
+                    'placeholder' => 'Adresse',
                 ],
+                'label' => 'Adresse complète',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -100,7 +104,8 @@ class RegistrationFormType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-check-label ml-2'
-                ]
+                ],
+                'label' => 'En cochant cette case vous accepté les CGV.',
             ])
         ;
     }

@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-
     <title>{% block title %}Back-office La Nîmes'alerie!{% endblock %}</title>
     {# Run `composer require symfony/webpack-encore-bundle`
        and uncomment the following Encore helpers to start using Symfony UX #}
@@ -42,6 +41,7 @@
                     <ul class="d-flex">
                         <li class="{% if route starts with 'admin_main' %}selected{% endif %}"><a href="{{ path('admin_main_home') }}">Accueil</a></li>
                         <li class="{% if route starts with 'categorie' %}selected{% endif %}"><a href="{{ path('categorie_index') }}">Catégories</a></li>
+                        <li class="{% if route starts with 'admin_contact_form' %}selected{% endif %}"><a href="{{ path('admin_contact_form_list') }}">Contacts</a></li>
                         <li class="{% if route starts with 'client' %}selected{% endif %}"><a href="{{ path('client_index') }}">Clients</a></li>
                         <li class="{% if route starts with 'order' %}selected{% endif %}"><a href="{{ path('order_index') }}">Commandes</a></li>
                         <li class="{% if route starts with 'brand' %}selected{% endif %}"><a href="{{ path('brand_index') }}">Marques</a></li>
@@ -99,6 +99,5 @@
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
-    <script src="{{ asset('js/backoffice.js') }}"></script>
 </body>
 </html>

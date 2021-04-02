@@ -1,7 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Product!{% endblock %}
+{% block title %}Tous les produits{% endblock %}
 
 {% block body %}
-    toto
+
+    <div class="container myBreadcrumb">
+        <h3>
+            Accueil / Boutique
+        </h3>
+    </div>
+
+    <img class="shop_bcg" src="{{ asset('images/front/space2.jpg') }}" alt="shop_background">
+
+    <div class="d-flex container-fluid">
+
+        <aside class="col-2">
+            {{ include('product/sidebar.html.twig') }}
+        </aside>
+
+        <main class="col-10">
+
+            <h1 class="text-center">Nos Produits</h1>
+
+            {{ include('product/products-panel.html.twig') }}
+
+        </main>
+
+    </div>
+
 {% endblock %}

@@ -16,17 +16,20 @@ class ContactFormController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        if (array_slice($request->getSession()->getFlashBag()->get('currentRoute'), -1)) {
-            $precedentRoute = array_slice($request->getSession()->getFlashBag()->get('currentRoute'), -1)[0];
-        } else {
-            $precedentRoute = 'home';
-        }
-
+        $flashCurrentRoute = array_slice($request->getSession()->getFlashBag()->get('currentRoute'), -1);
 
         $contact = new ContactForm();
         $form = $this->createForm(ContactFormType::class, $contact);
 
         $form->handleRequest($request);
+
+//        dump(array_slice($request->getSession()->getFlashBag()->get('currentRoute'), -1));
+
+        if ($flashCurrentRoute && $flashCurrentRoute[0]) {
+            $precedentRoute = $flashCurrentRoute[0];
+        } else {
+            $precedentRoute = 'home';
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
 

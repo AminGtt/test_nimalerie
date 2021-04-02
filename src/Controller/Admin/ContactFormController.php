@@ -2,7 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ContactForm;
+use App\Repository\ContactFormRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,26 +16,42 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactFormController extends AbstractController
 {
     /**
-     * @Route("/", name="list")
+     * @Route("/", name="list", methods={"GET"})
      */
-    public function list(): Response
+    public function list(ContactFormRepository $contactFormRepository): Response
     {
-        return $this->render('admin/contact_form/index.html.twig');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        return $this->render('admin/contact_form/index.html.twig', [
+            'contact_forms' => $contactFormRepository->findAll(),
+        ]);
     }
 
     /**
-     * @Route("/show/{id}", name="show")
+     * @Route("/{id}", name="show", methods={"GET"})
      */
-    public function show(): Response
+    public function show(ContactForm $contactForm): Response
     {
-        return $this->render('admin/contact_form/index.html.twig');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        return $this->render('admin/contact_form/show.html.twig', [
+            'contact_form' => $contactForm,
+        ]);
     }
 
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
-    public function delete(): Response
+    public function delete(ContactForm $contactForm, Request $request): Response
     {
-        return $this->render('admin/contact_form/index.html.twig');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if ($this->isCsrfTokenValid('delete'.$contactForm->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($contactForm);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_contact_form_list');
     }
 }

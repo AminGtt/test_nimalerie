@@ -28,7 +28,7 @@ class Photo
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="photos")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Choice(message="Veuillez choisir un produit.")
+     * @Assert\NotBlank(message="Veuillez choisir un produit.")
      */
     private $product;
 

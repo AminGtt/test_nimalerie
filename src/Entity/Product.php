@@ -56,8 +56,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="products")
-     * @Assert\NotBlank(message="Un produit doit avoir un titre.")
-     * @Assert\Choice(message="Un produit doit appartenir à une catégorie.")
+     * @Assert\NotBlank(message="Un produit doit avoir une catégorie.")
      */
     private $categorie;
     /**
@@ -68,7 +67,6 @@ class Product
      * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="Un produit doit avoir une marque")
-     * @Assert\Choice(message="Un produit doit avoir une marque.")
      */
     private $brand;
 

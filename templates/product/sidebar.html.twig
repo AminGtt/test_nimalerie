@@ -1,0 +1,57 @@
+<h2 class="text-center my-3">Filtres</h2>
+
+<div id="accordion">
+
+    <h3 class="font-weight-bold">Prix</h3>
+
+    <div>
+        <div class="d-flex">
+
+            <div class="w-50">
+                <label for="minamount"><small>Prix mini:</small></label>
+                <input class="w-100" type="text" id="minamount" readonly>
+            </div>
+
+            <div class="w-50 text-right">
+                <label for="maxamount"><small>Prix maxi:</small></label>
+                <input class="w-100 text-right" type="text" id="maxamount" readonly>
+            </div>
+
+        </div>
+
+        <div class="mt-4" id="slider-range"></div>
+    </div>
+
+    <h3 class="font-weight-bold">Sous-catégories</h3>
+
+    <div class="overflow-hidden">
+        <label for="categorie" hidden>Catégories</label>
+        <select name="categorie" id="categorie">
+
+            <option selected="selected">Autres catégories</option>
+
+            {% for cat in categories %}
+
+                {% if categorie is defined %}
+
+                    {% if cat.parent == "Animaux" and cat.name != categorie.name %}
+                        <option value="{{ path('product_listByCategorie', {slug: cat.slug}) }}">{{ cat.name }}</option>
+                    {% endif %}
+
+                {% else %}
+
+                    {% if cat.parent == "Animaux" %}
+                        <option value="{{ path('product_listByCategorie', {slug: cat.slug}) }}">{{ cat.name }}</option>
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+{% block javascripts %}
+
+{% endblock %}
+

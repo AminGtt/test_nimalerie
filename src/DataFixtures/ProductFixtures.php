@@ -33,7 +33,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product1->setExcltaxPrice(15.95);
         $product1->setIsActive(true);
         $product1->setBrand($this->brandRepository->findOneBy(['name' => 'Sheba']));
-        $product1->setCategorie($this->categorieRepository->findOneBy(['name' => 'Croquette']));
+        $product1->setCategorie($this->categorieRepository->findOneBy(['name' => 'Chiens']));
         $manager->persist($product1);
         $manager->flush();
 
@@ -42,7 +42,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product2->setExcltaxPrice(11.95);
         $product2->setIsActive(true);
         $product2->setBrand($this->brandRepository->findOneBy(['name' => 'Purina']));
-        $product2->setCategorie($this->categorieRepository->findOneBy(['name' => 'Paté']));
+        $product2->setCategorie($this->categorieRepository->findOneBy(['name' => 'Chats']));
         $manager->persist($product2);
         $manager->flush();
 
@@ -60,7 +60,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product4->setExcltaxPrice(9.95);
         $product4->setIsActive(true);
         $product4->setBrand($this->brandRepository->findOneBy(['name' => 'Sheba']));
-        $product4->setCategorie($this->categorieRepository->findOneBy(['name' => 'Nourriture']));
+        $product4->setCategorie($this->categorieRepository->findOneBy(['name' => 'Poissons']));
         $manager->persist($product4);
         $manager->flush();
     }

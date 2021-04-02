@@ -1,0 +1,55 @@
+<div class="d-flex flex-wrap">
+
+    {% for produit in products %}
+
+        {#FLIP-CARD#}
+        <div class="myCard">
+            <div class="myCard-wrapper">
+
+                <div class="front_card">
+                    <h4>{{ produit.title }}</h4>
+
+                    {% if produit.photos.get(0) is defined %}
+                        <img src="{{ produit.photos.get(0).link }}" alt="photo mise en avant produit">
+                    {% endif %}
+                </div>
+
+                <div class="back_card">
+                    <div class="pt-4 mx-5">
+                        <h4 class="">{{ produit.title }}</h4>
+                        <p class="text-left"><small>{{ produit.categorie }} - {{ produit.brand }}</small></p>
+                        <div>
+                            <a href="{{ path('product_details', {id: produit.id}) }}">
+                                <button class="button blue_btn">Détails</button>
+                            </a>
+                        </div>
+                        <p class="text-right"><span class="price">{{ produit.incltaxPrice|number_format(2, '.', '') }}</span> € TTC</p>
+                    </div>
+
+                    <div class="quantitySelector">
+
+                        <div class="qty-wrapper">
+                            <button class="qtyLess">-</button>
+                        </div>
+
+                        <div class="qty-wrapper wrapper-mid">
+                            <span class="qty">1</span>
+                        </div>
+
+                        <div class="qty-wrapper">
+                            <button class="qtyMore">+</button>
+                        </div>
+
+                    </div>
+
+                    <button class="button green_btn card_btn">Ajouter au panier</button>
+
+                </div>
+
+            </div>
+        </div>
+        {#FLIP-CARD#}
+
+    {% endfor %}
+
+</div>
