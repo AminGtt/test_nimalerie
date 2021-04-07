@@ -43,8 +43,12 @@
 
             {% endif %}
 
-            <div class="ml-4 gear">
+            <div class="ml-4 cart">
                 <img src="{{ asset('images/front/cart.png') }}" alt="logo panier">
+
+                <div class="cart-wrapper" hidden>
+                    {{ render(controller('App\\Controller\\PartsController::cart')) }}
+                </div>
             </div>
         </nav>
     </div>

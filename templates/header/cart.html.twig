@@ -1,0 +1,56 @@
+<div class="headerCart">
+    <h3>Mon panier</h3>
+
+    <span class="articlesCounter">
+{# TODO #}1 articles
+    </span>
+</div>
+
+<div class="bodyCart">
+    {% if product|length <1 %}
+        <h4 class="my-5">Votre panier est encore vide 😥 remplissez-le! 🙂</h4>
+    {% else %}
+        <section class="article">
+            <section>
+                <p><small>{{ product.brand }}</small></p>
+
+                <h4>{{ product.title }}</h4>
+
+                <p><span>{{ app.request.cookies.get('TotalPerArticle') }}€</span> pour <span>{{ app.request.cookies.get('Quantity') }}</span></p>
+            </section>
+
+            <section class="h-100">
+                <img src="{{ asset('images/front/gift_delivery.png') }}" alt="image test">
+            </section>
+        </section>
+    {% endif %}
+
+
+    <div class="totals">
+        <table class="table table-borderless">
+            <tbody>
+                <tr class="ht">
+                    <td>Prix H.T</td>
+                    <td>{{ (product.excltaxPrice * app.request.cookies.get('Quantity'))|number_format(2) }}€</td>
+                </tr>
+                <tr class="tva">
+                    <td>TVA</td>
+                    <td>{{ app.request.cookies.get('TotalPerArticle') - (product.excltaxPrice * app.request.cookies.get('Quantity'))|number_format(2) }}€</td>
+                </tr>
+                <tr class="ttc">
+                    <td>Total  T.T.C</td>
+                    <td>{{ app.request.cookies.get('TotalPerArticle') }}€</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-auto mb-4">
+        <a href="{{ path('cart_details') }}">
+            <button class="button green_btn">
+                Détails panier
+            </button>
+        </a>
+    </div>
+
+</div>

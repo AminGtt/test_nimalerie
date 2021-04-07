@@ -51,9 +51,8 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'toto@gmail.com'
                 ],
             ])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'mapped' => false,
                 'invalid_message' => 'Votre mot de passe ne correspond pas.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
