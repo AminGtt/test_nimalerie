@@ -2,7 +2,7 @@
 
     {% if products|length > 0 %}
         {% for produit in products %}
-            <span class="productId" hidden>{{ produit.id }}</span>
+{#            <span class="productId" hidden>{{ produit.id }}</span>#}
             {#FLIP-CARD#}
             <div class="myCard">
                 <div class="myCard-wrapper">
@@ -27,26 +27,37 @@
                             <p class="text-right"><span class="price">{{ produit.incltaxPrice|number_format(2, '.', '') }}</span> € TTC</p>
                         </div>
 
-                        <div class="quantitySelectorOnCard">
+                        {# test form #}
 
-                            <div class="qty-wrapper">
-                                <button class="qtyLess">-</button>
+                        <form action="" method="post">
+                            <div class="quantitySelector onCard">
+
+                                <input type="hidden" name="product_id" id="product_id" value="{{ produit.id }}">
+
+                                <div class="qty-wrapper">
+                                    <button type="button" class="qtyLess">-</button>
+                                </div>
+
+                                <div class="qty-wrapper wrapper-mid">
+                                    <label hidden for="qty">Quantité</label>
+                                    <input name="qty" id="qty" class="qty" value="1">
+                                </div>
+
+                                <div class="qty-wrapper">
+                                    <button type="button" class="qtyMore">+</button>
+                                </div>
+
                             </div>
 
-                            <div class="qty-wrapper wrapper-mid">
-                                <span class="qty">1</span>
-                            </div>
+{#                            <input type="hidden" name="price" id="price" value="{{ produit.incltaxPrice }}">#}
 
-                            <div class="qty-wrapper">
-                                <button class="qtyMore">+</button>
-                            </div>
+                            <button type="submit" class="button green_btn card_btn submit_cart_btn">Ajouter au panier</button>
+                        </form>
 
-                        </div>
 
-                        <button class="button green_btn card_btn submit_cart_btn">Ajouter au panier</button>
+                        {# test form #}
 
                     </div>
-
                 </div>
             </div>
             {#FLIP-CARD#}

@@ -72,24 +72,37 @@
                     {{ product.incltaxPrice|number_format(2, '.', '') }}€
                 </p>
 
-                <div class="d-flex align-items-center">
-                    <div class="quantitySelectorOnDetails">
+                <div >
 
-                        <div class="qty-wrapper">
-                            <button class="qtyLess">-</button>
+                    {# test form #}
+
+                    <form action="#" method="post" class="w-100 row">
+                        <div class="quantitySelector onDetails col-3">
+
+                            <input type="hidden" name="product_id" id="product_id" value="{{ product.id }}">
+
+                            <div class="qty-wrapper">
+                                <button type="button" class="qtyLess">-</button>
+                            </div>
+
+                            <div class="qty-wrapper wrapper-mid">
+                                <label hidden for="qty">Quantité</label>
+                                <input name="qty" id="qty" class="qty" value="1">
+                            </div>
+
+                            <div class="qty-wrapper">
+                                <button type="button" class="qtyMore">+</button>
+                            </div>
+
                         </div>
 
-                        <div class="qty-wrapper wrapper-mid">
-                            <span class="qty">1</span>
-                        </div>
+                        <input type="hidden" name="price" id="price" value="{{ product.incltaxPrice }}">
 
-                        <div class="qty-wrapper">
-                            <button class="qtyMore">+</button>
-                        </div>
+                        <button type="submit" class="button green_btn submit_cart_btn col-9">Ajouter au panier</button>
+                    </form>
 
-                    </div>
 
-                    <button class="button green_btn submit_cart_btn">Ajouter au panier</button>
+                    {# test form #}
 
                 </div>
             </div>

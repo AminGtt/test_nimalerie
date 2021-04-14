@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\CategorieRepository;
-use App\Repository\ProductRepository;
+use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PartsController extends AbstractController
 {
@@ -18,10 +18,26 @@ class PartsController extends AbstractController
         ]);
     }
 
-    public function cart(CategorieRepository $categRepo, Request $request, ProductRepository $productRepository): Response
+    public function cart(SessionInterface $session, CartService $cartService): Response
     {
-        return $this->render("header/cart.html.twig", [
-            'product' => $productRepository->find($request->cookies->get('ProductId'))
+        if (!$session->has('panier')) {
+            $session->set('panier', []);
+        }
+
+        $articles = $cartService->getArticlesInCart();
+
+        $totalHT = 0;
+        $totalTTC = 0;
+
+        foreach ($articles as $article) {
+            $totalHT += ($article['product']->getExcltaxPrice() * $article['qty']);
+            $totalTTC += ($article['product']->getIncltaxPrice() * $article['qty']);
+        }
+
+        return $this->render('header/cart.html.twig', [
+            'articles' => $articles,
+            "totalHt" => $totalHT,
+            "totalTtc" => $totalTTC
         ]);
     }
 

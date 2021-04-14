@@ -18,7 +18,8 @@ class ProductOrderType extends AbstractType
         $builder
             ->add('quantity', IntegerType::class, [
                 'attr' => ['class' => 'form-control form-control-lg',
-                    'placeholder' => 'Choisissez une quantité'],
+                    'placeholder' => 'Choisissez une quantité',
+                    'min' => 1],
                 'label' => 'Quantité :'
                 ])
             ->add('product', EntityType::class, [

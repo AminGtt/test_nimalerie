@@ -22,20 +22,18 @@ class ProductOrder
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="productOrders", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="Veuillez selectionner un produit.")
-     * @Assert\Choice(message="Veuillez selectionner un produit.")
      */
     private $product;
     /**
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="productOrders", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="Veuillez selectionner une commande.")
-     * @Assert\Choice(message="Veuillez selectionner une commande.")
      */
     private $order;
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank(message="Veuillez selectionner une quantité.")
-     * @Assert\Positive(message="La quantité ne peux être nul ou négative.")
+     * @Assert\GreaterThan(value = 0, message="La quantité ne peux être nul ou négative.")
      */
     private $quantity;
 

@@ -1,48 +1,23 @@
 const selectors = document.querySelectorAll('.quantitySelectorOnCard') + document.querySelectorAll('.quantitySelectorOnDetails'),
     more = document.querySelectorAll('.qtyMore'),
     less = document.querySelectorAll('.qtyLess'),
-    qty = document.querySelectorAll('.qty'),
-    subs = document.querySelectorAll('.submit_cart_btn'),
-    prices = document.querySelectorAll(".price"),
-    productIds = document.querySelectorAll('.productId');
+    qty = document.querySelectorAll('.qty');
 
 for (let i = 0; i < selectors.length; i++){
 
     if (more[i]){
         more[i].addEventListener('click', () => {
-            qty[i].innerHTML++;
+            qty[i].value++;
         })
     }
 
     if (less[i]){
         less[i].addEventListener('click', () => {
-            if (qty[i].innerHTML > 1) {
-                qty[i].innerHTML--;
+            if (qty[i].value > 1) {
+                qty[i].value--;
             }
         })
     }
-
-    if (subs[i]){
-        subs[i].addEventListener('click', () => {
-
-            // deleteCookie('Total');
-            // deleteCookie('Quantity');
-
-            let wantedQty = qty[i].innerHTML,
-                singlePrice = parseFloat(prices[i].innerHTML),
-                total = singlePrice * wantedQty,
-                productId = productIds[i].innerHTML;
-
-            total = total.toFixed(2);
-
-
-            setCookie('TotalPerArticle', total);
-            setCookie('ProductId', productId);
-            setCookie('Quantity', wantedQty);
-            location.reload();
-        })
-    }
-
 }
 
 function setCookie(cookieName, cookieValue) {
@@ -54,4 +29,28 @@ function setCookie(cookieName, cookieValue) {
 
 function deleteCookie(cookieName) {
     document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
+}
+
+function getCookie(cookieName) {
+    let name = cookieName + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie(cookieName, cookieValue) {
+    if (getCookie(cookieName) !== '') {
+        setCookie();
+    } else {
+        setCookie();
+    }
 }

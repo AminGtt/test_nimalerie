@@ -448,8 +448,9 @@ footer section img {
   left: 0;
 }
 
-.card_btn:hover {
-  transform: scale(1.1);
+.card_btn:hover,
+.submit_cart_btn:hover {
+  transform: scale(1.05);
 }
 
 .photoSide img {
@@ -494,14 +495,38 @@ footer section img {
   font-weight: bold;
 }
 
-.quantitySelectorOnCard {
+.review-wrapper {
+  background-color: #F5F5F5;
+}
+
+.reviewCart, .totalCart {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  margin: 20px 20px 0;
+  padding: 20px 20px 0;
+  background-color: white;
+}
+
+.reviewCart h3 {
+  color: #07775A;
+  font-weight: bold;
+}
+.reviewCart span {
+  font-weight: bold;
+}
+
+.totalCart .strippedPrice {
+  text-decoration: line-through;
+}
+
+.onCard {
   position: absolute;
   bottom: 50px;
   right: 30px;
   display: flex;
 }
 
-.quantitySelectorOnDetails {
+.onDetails {
   display: flex;
 }
 

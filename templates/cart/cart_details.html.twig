@@ -3,5 +3,127 @@
 {% block title %}Récapitulatif du panier{% endblock %}
 
 {% block body %}
-    <h3>test</h3>
+    <main class="review-wrapper">
+        <div class="container d-flex">
+
+            <div class="reviewCart col-8">
+                <div class="d-flex align-items-center">
+                    <h2 class="mx-2">Récapitulatif</h2>
+                    <span>({{ articles|length }} article(s))</span>
+                </div>
+
+                {% if articles|length > 0 %}
+                    {% for article in articles %}
+                        <section class="d-flex justify-content-between">
+
+                            <div>
+                                <img height="200px" width="200px" src="{{ article.product.photos[0].link }}" alt="photo produit">
+                            </div>
+
+                            <div>
+                                <span>{{ article.product.title }}</span>
+
+                                <p>{{ article.product.brand }}</p>
+                                <p>{{ article.product.incltaxPrice }}/unité</p>
+                                <p>Quantité : </p>
+
+                                {# NEED AJAX #}
+
+                                <div class="quantitySelector onDetails">
+
+                                    <div class="qty-wrapper">
+                                        <button type="button" class="qtyLess">-</button>
+                                    </div>
+
+                                    <div class="qty-wrapper wrapper-mid">
+                                        <label hidden for="qty">Quantité</label>
+                                        <input name="qty" id="qty" class="qty" value="{{ article.qty }}">
+                                    </div>
+
+                                    <div class="qty-wrapper">
+                                        <button type="button" class="qtyMore">+</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <form action="{{ path('cart_details_delete') }}" method="post">
+                                    <button name="product_id" type="submit" value="{{ article.product.id }}">
+                                        Supprimer
+                                        <span class="iconify" data-inline="false" data-icon="mdi:close-octagon"></span>
+                                    </button>
+                                </form>
+
+                                <h3 class="my-5">{{ article.qty * article.product.incltaxPrice|number_format(2, '.', '') }}€ TTC</h3>
+                            </div>
+
+                        </section>
+                    {% endfor %}
+                {% else %}
+                    <div class="w-100">
+                        <div class="d-flex flex-column align-items-center">
+                            <h4>Aucun articles présent ici pour le moment</h4>
+                            <img src="https://media3.giphy.com/media/JJCi9CUlegFgdRQjT0/giphy.gif" alt="gif wip">
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <div class="totalCart col-4">
+                <h2 class="text-center mb-4">Totaux</h2>
+                <table class="table">
+                    <tbody>
+
+                    <tr>
+                        <td>Total avant livraison</td>
+                        <td>
+                            {{ totalTtc|number_format(2, '.', '') }}€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Frais de livraison</td>
+                        <td>
+                            {% if totalTtc > 49 or totalTtc == 0 %}
+                                {% set free = 0 %}
+                                <small class="strippedPrice">
+                                    {{ shippingTax|number_format(2, '.', '') }}
+                                </small>
+                                0€
+                            {% else %}
+                                {{ shippingTax|number_format(2, '.', '') }}€
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total final</td>
+                        <td class="font-weight-bold">
+                            {{ free is defined ? totalTtc|number_format(2, '.', '') : (totalTtc + shippingTax)|number_format(2, '.', '') }}€
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div>
+
+                    <a href="">
+                        <button class="button my-2 blue_btn">Continuer mes achats</button>
+                    </a>
+
+                    <a href="">
+                        <button class="button my-2 green_btn">Valider ma commande</button>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="services">
+            {{ include('ourServices/ourServices.html.twig') }}
+        </div>
+    </main>
 {% endblock %}
