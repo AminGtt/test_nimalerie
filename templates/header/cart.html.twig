@@ -41,7 +41,7 @@
                 <tr class="tva">
                     <td>TVA</td>
 {#                    <td>{{ articles.total - (product.excltaxPrice * articles.quantity)|number_format(2) }}€</td>#}
-                    <td>{{ totalTtc - totalHt|number_format(2, '.', '') }}€</td>
+                    <td>{{ (totalTtc - totalHt)|number_format(2, '.', '') }}€</td>
                 </tr>
                 <tr class="ttc">
                     <td>Total  T.T.C</td>

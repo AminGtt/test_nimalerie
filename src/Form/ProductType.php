@@ -8,7 +8,6 @@ use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +21,7 @@ class ProductType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Nom du produit',
                 'attr' => ['class' => 'form-control form-control-lg',
-                    'placeholder' => 'Kalash']
+                    'placeholder' => 'Croquette']
             ])
             ->add('description', TextType::class, [
                 'attr' => ['class' => 'form-control form-control-lg',

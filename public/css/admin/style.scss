@@ -68,6 +68,7 @@ aside img{
 //HEADER -> MAIN
 
 body{
+  background-size: cover;
   background-image: url("https://i.pinimg.com/originals/e2/71/fd/e271fda72f1e158b5f0569cc72d36d7f.jpg");
 }
 
@@ -102,14 +103,18 @@ main section div div a{
 
 }
 
+.fourGroup{
+  width: 50%;
+}
+
+.two_first{
+  //margin: 0;
+}
+
 main section div.fourGroup div{
   width: 47.5%;
   height: 240px;
 
-}
-
-div.lastGroup{
-  margin-left: -30px;
 }
 
 main section div div h3{

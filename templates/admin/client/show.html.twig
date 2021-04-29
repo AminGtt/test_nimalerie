@@ -38,7 +38,7 @@
                 <td>{{ client.birthDate ? client.birthDate|date('Y-m-d') : '' }}</td>
                 <td>{{ client.fullAdress }}</td>
                 <td>{{ client.gender ? 'Mme' : 'Mr' }}</td>
-                <td id="actions">
+                <td>
                     <button class="edit_btn button">
                         <a href="{{ path('client_edit', {'id': client.id}) }}">Editer</a>
                     </button>

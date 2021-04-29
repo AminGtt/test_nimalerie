@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Client;
 use App\Entity\Order;
-use App\Entity\ProductOrder;
 use App\Entity\State;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

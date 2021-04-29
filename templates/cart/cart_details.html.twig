@@ -24,7 +24,7 @@
                                 <span>{{ article.product.title }}</span>
 
                                 <p>{{ article.product.brand }}</p>
-                                <p>{{ article.product.incltaxPrice }}/unité</p>
+                                <p>{{ article.product.incltaxPrice|number_format(2, '.', '') }}/unité</p>
                                 <p>Quantité : </p>
 
                                 {# NEED AJAX #}
@@ -50,7 +50,7 @@
 
                             <div>
                                 <form action="{{ path('cart_details_delete') }}" method="post">
-                                    <button name="product_id" type="submit" value="{{ article.product.id }}">
+                                    <button class="deleteArticle" name="product_id" type="submit" value="{{ article.product.id }}">
                                         Supprimer
                                         <span class="iconify" data-inline="false" data-icon="mdi:close-octagon"></span>
                                     </button>
@@ -109,11 +109,11 @@
 
                 <div>
 
-                    <a href="">
+                    <a href="{{ path('product_list') }}">
                         <button class="button my-2 blue_btn">Continuer mes achats</button>
                     </a>
 
-                    <a href="">
+                    <a href="{{ path('cart_validation_info') }}">
                         <button class="button my-2 green_btn">Valider ma commande</button>
                     </a>
 

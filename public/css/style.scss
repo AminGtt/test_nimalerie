@@ -385,6 +385,18 @@ footer section img{
     width: 450px;
     object-fit: cover;
     border-radius: 50px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    transition: all .3s ease-in-out;
+  }
+
+  .fader{
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+
+  .img_wrapper{
+    position: relative;
   }
 }
 
@@ -588,12 +600,33 @@ footer section img{
   span{
     font-weight: bold;
   }
+  .deleteArticle{
+    border: none;
+    background-color: white;
+    color: rgba(255, 0, 0, .5);
+    text-decoration: underline;
+  }
 }
 
 .totalCart{
   .strippedPrice{
     text-decoration: line-through;
   }
+}
+
+.step_nav_wrapper{
+  transform: scale(.5);
+
+  span{
+    font-size: 26px;
+    margin: -40px 40px 20px;
+  }
+}
+
+.myBox{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
 }
 
 // qtySelector

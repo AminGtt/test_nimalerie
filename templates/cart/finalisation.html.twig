@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Finalisation de la commande{% endblock %}
+
+{% block body %}
+    <main class="review-wrapper">
+        <div class="step_nav_wrapper">
+            {{ include('cart/step_nav.html.twig') }}
+            <div class="d-flex justify-content-center">
+                <span>Informations</span>
+                <span>Paiement</span>
+                <span>Finalisation</span>
+            </div>
+        </div>
+
+        <section class="container text-center pb-5">
+
+            <h2>Votre commande a bien été créer. Merci de votre confiance.</h2>
+
+            <a href="{{ path('home') }}">
+                <button class="button my-2 green_btn">Retour à l'accueil</button>
+            </a>
+
+        </section>
+
+    </main>
+{% endblock %}

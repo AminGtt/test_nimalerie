@@ -1,0 +1,119 @@
+.step-nav {
+  $circle-size: 80px;
+  $circle-color: #07775A;
+
+  height: $circle-size;
+  position: relative;
+  width: 480px;
+  margin: 0 auto 70px;
+  .step {
+    position: relative;
+    float: left;
+    width: 200px;
+    height: $circle-size;
+
+    p {
+      width: $circle-size;
+      height: $circle-size;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      line-height: $circle-size;
+      font-size: 30px;
+      pointer-events: none;
+      z-index: 10;
+      color: #7d7d7d;
+      transition: font-size 0.3s, color 0.3s;
+      &.active {
+        font-size: 46px;
+        color: #fafafa;
+      }
+    }
+    .line {
+      position: absolute;
+      top: 50%;
+      margin-top: -3px;
+      width: 120px;
+      height: 6px;
+      background: #d6dadc;
+      .progress {
+        width: 0%;
+        height: 6px;
+        background: $circle-color;
+      }
+    }
+
+    .radial-progress {
+      $circle-background: #d6dadc;
+      $inset-size: 70px;
+
+      width: $circle-size;
+      height: $circle-size;
+      background-color: $circle-background;
+      position: absolute;
+      right: 0;
+      border-radius: 50%;
+      -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      //cursor: pointer;
+
+      .circle {
+        .mask, .fill, .shadow {
+          width: $circle-size;
+          height: $circle-size;
+          position: absolute;
+          border-radius: 50%;
+        }
+        .mask, .fill {
+          -webkit-backface-visibility: hidden;
+        }
+        .mask {
+          clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+          .fill {
+            clip: rect(0px, $circle-size/2, $circle-size, 0px);
+            background-color: $circle-color;
+          }
+        }
+      }
+      .inset {
+        width: $inset-size;
+        height: $inset-size;
+        position: absolute;
+        margin-left: ($circle-size - $inset-size)/2;
+        margin-top: ($circle-size - $inset-size)/2;
+        background-color: $circle-color;
+        border-radius: 50%;
+
+        .inner-circle {
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: #fafafa;
+          border-radius: 50%;
+        }
+      }
+    }
+    &.first {
+      width: 80px;
+
+      .radial-progress {
+        transform: matrix(0, 1.3, -1.3, 0, 0, 0);
+        z-index: 10;
+      }
+      .circle .fill, .circle .mask.full{
+        transform: rotate(180deg);
+      }
+      .circle .fill.fix {
+        transform: rotate(360deg);
+      }
+      .radial-progress.active .inner-circle{
+        transform: matrix(0, 0, 0, 0, 0, 0);
+      }
+      p {
+        color: #fafafa;
+        font-size: 46px;
+      }
+
+    }
+  }
+}

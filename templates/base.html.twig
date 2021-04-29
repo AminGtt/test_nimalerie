@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/step_nav.css') }}">
 
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
@@ -44,10 +45,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
 <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
-<script async type="module" src="{{ asset('js/filterBar.js') }}"></script>
+<script async src="{{ asset('js/filterBar.js') }}"></script>
 <script async src="{{ asset('js/quantitySelector.js') }}"></script>
 <script async src="{{ asset('js/cart.js') }}"></script>
+<script async src="{{ asset('js/step_nav.js') }}"></script>
+<script async src="{{ asset('js/home_menu.js') }}"></script>
 {% block javascripts %}
     {#{{ encore_entry_script_tags('app') }}#}
 {% endblock %}

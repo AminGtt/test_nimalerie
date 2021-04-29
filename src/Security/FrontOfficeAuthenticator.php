@@ -102,7 +102,16 @@ class FrontOfficeAuthenticator extends AbstractFormLoginAuthenticator implements
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+
+        $flashCurrentRoute = array_slice($request->getSession()->getFlashBag()->get('target'), -1);
+
+        if ($flashCurrentRoute && $flashCurrentRoute[0]) {
+            $precedentRoute = $flashCurrentRoute[0];
+        } else {
+            $precedentRoute = 'home';
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate($precedentRoute));
     }
 
     protected function getLoginUrl()

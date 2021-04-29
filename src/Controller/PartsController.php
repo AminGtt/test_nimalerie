@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class PartsController extends AbstractController
 {
 
-    public function header(CategorieRepository $categRepo): Response
+    public function header(CategorieRepository $categorieRepository): Response
     {
         return $this->render('header/header.html.twig', [
-            'categories' => $categRepo->findAll(),
+            'categories' => $categorieRepository->findAll(),
         ]);
     }
 

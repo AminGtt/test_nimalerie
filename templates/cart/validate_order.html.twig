@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Récapitulatif du panier{% endblock %}
+
+{% block body %}
+    <main class="review-wrapper">
+        <div class="step_nav_wrapper">
+            {{ include('cart/step_nav.html.twig') }}
+            <div class="d-flex justify-content-center">
+                <span>Informations</span>
+                <span>Paiement</span>
+                <span>Finalisation</span>
+            </div>
+        </div>
+
+        <section class="d-flex container pb-5">
+
+            <div class="reviewCart col-8">
+
+                <div class="d-flex align-items-center">
+                    <h2 class="mx-2">Mes informations</h2>
+                </div>
+
+                <h4 class="ml-5">Veuillez vérifier les informations ci-dessous</h4>
+
+                <div class="m-5 text-center">
+                    {{ form(form) }}
+                </div>
+
+            </div>
+
+            <div class="totalCart col-4">
+                <h2 class="text-center mb-4">Ma commande</h2>
+                <table class="table">
+                    <tbody>
+
+                    <tr>
+                        <td>Total avant livraison</td>
+                        <td>
+                            {{ totalTtc|number_format(2, '.', '') }}€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Frais de livraison</td>
+                        <td>
+                            {% if totalTtc > 49 or totalTtc == 0 %}
+                                {% set free = 0 %}
+                                <small class="strippedPrice">
+                                    {{ shippingTax|number_format(2, '.', '') }}
+                                </small>
+                                0€
+                            {% else %}
+                                {{ shippingTax|number_format(2, '.', '') }}€
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total final</td>
+                        <td class="font-weight-bold">
+                            {{ free is defined ? totalTtc|number_format(2, '.', '') : (totalTtc + shippingTax)|number_format(2, '.', '') }}€
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div>
+                    <a href="{{ path('cart_payment') }}">
+                        <button class="button my-2 green_btn">Valider mes informations</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

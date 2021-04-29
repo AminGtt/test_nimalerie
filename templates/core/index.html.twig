@@ -99,28 +99,7 @@
 
         </section>
 
-        <section class="homeMenu">
-            <h2 class="text-center">Toute l'animalerie</h2>
-
-            <div class="wrapper container d-flex my-5">
-                <div>
-                    <img src="{{ asset('images/front/chien2.jpg') }}" alt="">
-                </div>
-
-                <div class="d-flex list">
-                    <ul class="flex-column align-items-baseline">
-                        <li>
-                            <h2><a href="{{ path('product_list') }}">Toute la boutique</a></h2>
-                        </li>
-                        {% for categorie in categories %}
-                            {% if categorie.parent == 'Animaux' %}
-                                <li><h2><a href="{{ path('product_listByCategorie', {'slug' : categorie.slug}) }}">{{ categorie.name }}</a></h2></li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </section>
+        {{ include('core/home_menu.html.twig') }}
 
         <div class="services">
             {{ include('ourServices/ourServices.html.twig') }}

@@ -38,6 +38,7 @@ class Order
      * @ORM\OneToMany(targetEntity=ProductOrder::class, mappedBy="order", orphanRemoval=true)
      */
     private $productOrders;
+
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="orders")
      * @ORM\JoinColumn(nullable=false)

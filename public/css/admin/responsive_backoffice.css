@@ -1,0 +1,34 @@
+@media screen and (min-width: 769px) and (max-width: 1919px) {
+  header nav {
+    display: none;
+  }
+
+  main section {
+    padding-bottom: 100px;
+  }
+  main section div.fourGroup div {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 768px) {
+  header nav {
+    display: none;
+  }
+
+  main section {
+    flex-direction: column;
+    padding-bottom: 100px;
+  }
+  main section div.fourGroup {
+    width: 100%;
+    flex-direction: column;
+  }
+  main section div.fourGroup #no_flex_media {
+    display: contents !important;
+  }
+  main section div.fourGroup div {
+    width: 90%;
+  }
+}
+
+/*# sourceMappingURL=responsive_backoffice.css.map */

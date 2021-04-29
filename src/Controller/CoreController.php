@@ -21,6 +21,10 @@ class CoreController extends AbstractController
         $contactForm = new ContactForm();
         $form = $this->createForm(ContactFormType::class, $contactForm);
 
+        // this flash is needed for the contactForm,
+        // the form is available on different pages and
+        // if we do not set à flash from the route where we come,
+        // the redirection is always done on the homepage
         $this->addFlash('currentRoute', $request->attributes->get('_route'));
 
         $form->handleRequest($request);

@@ -1,0 +1,46 @@
+// START SMALL PC & TABLET
+
+@media screen  and (min-width: 769px) and (max-width: 1919px){
+
+  header nav{
+    display: none;
+  }
+
+  main section{
+    //flex-direction: column;
+    padding-bottom: 100px;
+
+    div.fourGroup div{
+        width: 90%;
+    }
+  }
+}
+
+// END SMALL PC & TABLET - START SMARTPHONE
+
+@media screen and (max-width: 768px){
+
+  header nav{
+    display: none;
+  }
+
+  main section{
+    flex-direction: column;
+    padding-bottom: 100px;
+
+    div.fourGroup{
+      width: 100%;
+      flex-direction: column;
+
+      #no_flex_media{
+        display: contents !important;
+      }
+
+      div{
+        width: 90%;
+      }
+    }
+  }
+}
+
+// END SMARTPHONE

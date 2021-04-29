@@ -13,14 +13,15 @@ $(document).ready( function () {
                 "loadingRecords": "Chargement...",
                 "processing":     "En cours...",
                 "search":         "Rechercher:",
-                "zeroRecords":    "Aucune correspondence",
+                "zeroRecords":    "Aucune correspondance",
                 "paginate": {
                     "first": "Premier",
                     "last": "Dernier",
                     "next": "Suivant",
                     "previous": "Précédent"
                 }
-            }
+            },
+            responsive: true,
         }
     );
 });

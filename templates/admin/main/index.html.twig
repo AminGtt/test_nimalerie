@@ -6,10 +6,10 @@
 
             <section>
 
-                <div class="fourGroup d-flex col-6 flex-wrap">
+                <div class="fourGroup d-flex flex-wrap">
 
-                    <div class="d-flex flex-row no-bg">
-                        <div class="zoomIn two_first ml-0">
+                    <div id="no_flex_media" class="d-flex flex-row no-bg">
+                        <div class="zoomIn two_first">
                             <a href="{{ path('categorie_index') }}">
                                 <span class="iconify" data-inline="false" data-icon="mdi:folder-outline" style="color: #6c7293; font-size: 100px;"></span>
 
@@ -19,7 +19,7 @@
                             </a>
                         </div>
 
-                        <div class="zoomIn two_first mr-0">
+                        <div class="zoomIn two_first">
                             <a href="{{ path('admin_contact_form_list') }}">
                                 <span class="iconify" data-inline="false" data-icon="mdi:comment-account" style="color: #6c7293; font-size: 100px;"></span>
 
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="fourGroup d-flex col-6 flex-wrap lastGroup">
+                <div class="fourGroup d-flex flex-wrap lastGroup">
 
                     <div class="zoomIn">
                         <a href="{{ path('product_order_index') }}">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="zoomIn">
                         <a href="{{ path('state_index') }}">
-                            <img id="logo_status" src="{{ asset('images/back/logo_status.png') }}">
+                            <img id="logo_status" src="{{ asset('images/back/logo_status.png') }}" alt="">
 
                             <h3>
                                 Etat
