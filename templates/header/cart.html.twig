@@ -2,7 +2,7 @@
     <h3>Mon panier</h3>
 
     <span class="articlesCounter">
-{# TODO #}{{ articles|length}} articles
+        {{ articles|length}} article(s)
     </span>
 </div>
 
@@ -35,18 +35,15 @@
             <tbody>
                 <tr class="ht">
                     <td>Prix H.T</td>
-                    <td>{{ totalHt|number_format(2, '.', '') }}€</td>
-{#                    <td>{{ (product.excltaxPrice * articles.quantity)|number_format(2) }}€</td>#}
+                    <td>{{ totalHt|number_format(2, ',', ' ') }}€</td>
                 </tr>
                 <tr class="tva">
                     <td>TVA</td>
-{#                    <td>{{ articles.total - (product.excltaxPrice * articles.quantity)|number_format(2) }}€</td>#}
-                    <td>{{ (totalTtc - totalHt)|number_format(2, '.', '') }}€</td>
+                    <td>{{ (totalTtc - totalHt)|number_format(2, ',', ' ') }}€</td>
                 </tr>
                 <tr class="ttc">
                     <td>Total  T.T.C</td>
-{#                    <td>{{ articles.total|number_format(2) }}€</td>#}
-                    <td>{{ totalTtc|number_format(2, '.', '') }}€</td>
+                    <td>{{ totalTtc|number_format(2, ',', ' ') }}€</td>
                 </tr>
             </tbody>
         </table>

@@ -12,13 +12,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class CategoryService
 {
     private $sluggerService;
-    private $em;
+    private $entityManager;
     private $validator;
 
-    public function __construct(SluggerService $sluggerService, EntityManagerInterface $em, ValidatorInterface $validator)
+    public function __construct(SluggerService $sluggerService, EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
         $this->sluggerService = $sluggerService;
-        $this->em = $em;
+        $this->entityManager = $entityManager;
         $this->validator = $validator;
     }
 
@@ -32,8 +32,8 @@ class CategoryService
         if ($errors->count() == 1) {
             return new FormError('Une catégorie avec le même slug existe déjà.');
         } else {
-            $this->em->persist($categorie);
-            $this->em->flush();
+            $this->entityManager->persist($categorie);
+            $this->entityManager->flush();
         }
     }
 }
